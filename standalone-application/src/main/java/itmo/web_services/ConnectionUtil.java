@@ -11,13 +11,6 @@ public class ConnectionUtil {
     private static final String JDBC_USER = "student";
     private static final String JDBC_PASSWORD = "student";
 
-//    static {
-//        try {
-//            Class.forName("org.postgresql.Driver");
-//        } catch (ClassNotFoundException ex) {
-//            Logger.getLogger(BookDao.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//    }
 
     public static Connection getConnection() {
         Connection connection = null;

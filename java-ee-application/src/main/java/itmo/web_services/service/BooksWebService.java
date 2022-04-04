@@ -1,19 +1,20 @@
 package itmo.web_services.service;
 
 import itmo.web_services.dao.BookDao;
-import itmo.web_services.dao.DataSource;
 import itmo.web_services.model.Book;
 
 import javax.annotation.Resource;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebService;
+import javax.sql.DataSource;
 import javax.xml.bind.annotation.XmlElement;
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.List;
 
-@WebService(name = "BookService")
-public class BookWebService {
+@WebService(serviceName = "BookService")
+public class BooksWebService {
 
     @Resource(lookup = "jdbc/ifmo-ws")
     private DataSource dataSource;
@@ -87,6 +88,12 @@ public class BookWebService {
     }
 
     private Connection getConnection() {
-        return dataSource.getConnection();
+        Connection connection = null;
+        try {
+            connection = dataSource.getConnection();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return connection;
     }
 }

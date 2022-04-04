@@ -95,6 +95,7 @@ public class WebClient {
 
             }
         }
+        in.close();
     }
 
     private void getBooks() {
@@ -109,7 +110,6 @@ public class WebClient {
             pubHouses.add(book.getPublishingHouse());
             System.out.println(book);
         }
-        printResponse(books);
     }
 
     private void getBooksByTitle(Scanner in) {
