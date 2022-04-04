@@ -1,4 +1,4 @@
-package itmo.web_services.executor;
+package itmo.web_services.dao.executor;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

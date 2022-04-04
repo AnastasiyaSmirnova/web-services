@@ -1,4 +1,4 @@
-create table book
+create table books
 (
     id               serial PRIMARY KEY,
     title            varchar(30),

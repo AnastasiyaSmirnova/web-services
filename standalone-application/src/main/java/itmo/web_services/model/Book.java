@@ -1,4 +1,4 @@
-package itmo.web_services;
+package itmo.web_services.model;
 
 public class Book {
     private long id;
