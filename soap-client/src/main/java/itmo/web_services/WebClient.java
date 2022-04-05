@@ -104,6 +104,7 @@ public class WebClient {
                 }
                 case 13: {
                     deleteBook(in);
+                    break;
                 }
                 default: {
                     System.out.println("unknown action");
