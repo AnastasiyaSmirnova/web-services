@@ -38,7 +38,7 @@ public class WebClient {
                 "\n1 - get books by title " +
                 "\n2 - get books by author " +
                 "\n3 - get books by publishing house" +
-                "\n4 - get book by pages range" +
+                "\n4 - get books by pages range" +
                 "\n5 - get books by title and author " +
                 "\n6 - get books by title and publishing house" +
                 "\n7 - get books by author and publishing house" +
@@ -92,7 +92,6 @@ public class WebClient {
                 default: {
                     System.out.println("unknown action");
                 }
-
             }
         }
         in.close();
@@ -219,5 +218,4 @@ public class WebClient {
     private String printStringList(List<String> list) {
         return Arrays.toString(list.toArray());
     }
-
 }
