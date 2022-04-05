@@ -27,6 +27,120 @@ public interface BooksWebService {
 
     /**
      * 
+     * @param id
+     * @return
+     *     returns itmo.web_services.service.QueryStatus
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "deleteBook", targetNamespace = "http://service.web_services.itmo/", className = "itmo.web_services.service.DeleteBook")
+    @ResponseWrapper(localName = "deleteBookResponse", targetNamespace = "http://service.web_services.itmo/", className = "itmo.web_services.service.DeleteBookResponse")
+    @Action(input = "http://service.web_services.itmo/BooksWebService/deleteBookRequest", output = "http://service.web_services.itmo/BooksWebService/deleteBookResponse")
+    public QueryStatus deleteBook(
+        @WebParam(name = "id", targetNamespace = "")
+        long id);
+
+    /**
+     * 
+     * @param title
+     * @return
+     *     returns java.util.List<itmo.web_services.service.Book>
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "getBooksByTitle", targetNamespace = "http://service.web_services.itmo/", className = "itmo.web_services.service.GetBooksByTitle")
+    @ResponseWrapper(localName = "getBooksByTitleResponse", targetNamespace = "http://service.web_services.itmo/", className = "itmo.web_services.service.GetBooksByTitleResponse")
+    @Action(input = "http://service.web_services.itmo/BooksWebService/getBooksByTitleRequest", output = "http://service.web_services.itmo/BooksWebService/getBooksByTitleResponse")
+    public List<Book> getBooksByTitle(
+        @WebParam(name = "title", targetNamespace = "")
+        String title);
+
+    /**
+     * 
+     * @param pages
+     * @param author
+     * @param publishingHouse
+     * @param language
+     * @param id
+     * @param title
+     * @return
+     *     returns itmo.web_services.service.QueryStatus
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "updateBook", targetNamespace = "http://service.web_services.itmo/", className = "itmo.web_services.service.UpdateBook")
+    @ResponseWrapper(localName = "updateBookResponse", targetNamespace = "http://service.web_services.itmo/", className = "itmo.web_services.service.UpdateBookResponse")
+    @Action(input = "http://service.web_services.itmo/BooksWebService/updateBookRequest", output = "http://service.web_services.itmo/BooksWebService/updateBookResponse")
+    public QueryStatus updateBook(
+        @WebParam(name = "id", targetNamespace = "")
+        long id,
+        @WebParam(name = "title", targetNamespace = "")
+        String title,
+        @WebParam(name = "author", targetNamespace = "")
+        String author,
+        @WebParam(name = "publishing_house", targetNamespace = "")
+        String publishingHouse,
+        @WebParam(name = "language", targetNamespace = "")
+        Language language,
+        @WebParam(name = "pages", targetNamespace = "")
+        int pages);
+
+    /**
+     * 
+     * @param pages
+     * @param author
+     * @param publishingHouse
+     * @param language
+     * @param title
+     * @return
+     *     returns long
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "addBook", targetNamespace = "http://service.web_services.itmo/", className = "itmo.web_services.service.AddBook")
+    @ResponseWrapper(localName = "addBookResponse", targetNamespace = "http://service.web_services.itmo/", className = "itmo.web_services.service.AddBookResponse")
+    @Action(input = "http://service.web_services.itmo/BooksWebService/addBookRequest", output = "http://service.web_services.itmo/BooksWebService/addBookResponse")
+    public long addBook(
+        @WebParam(name = "title", targetNamespace = "")
+        String title,
+        @WebParam(name = "author", targetNamespace = "")
+        String author,
+        @WebParam(name = "publishing_house", targetNamespace = "")
+        String publishingHouse,
+        @WebParam(name = "language", targetNamespace = "")
+        Language language,
+        @WebParam(name = "pages", targetNamespace = "")
+        int pages);
+
+    /**
+     * 
+     * @param author
+     * @return
+     *     returns java.util.List<itmo.web_services.service.Book>
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "getBooksByAuthor", targetNamespace = "http://service.web_services.itmo/", className = "itmo.web_services.service.GetBooksByAuthor")
+    @ResponseWrapper(localName = "getBooksByAuthorResponse", targetNamespace = "http://service.web_services.itmo/", className = "itmo.web_services.service.GetBooksByAuthorResponse")
+    @Action(input = "http://service.web_services.itmo/BooksWebService/getBooksByAuthorRequest", output = "http://service.web_services.itmo/BooksWebService/getBooksByAuthorResponse")
+    public List<Book> getBooksByAuthor(
+        @WebParam(name = "author", targetNamespace = "")
+        String author);
+
+    /**
+     * 
+     * @return
+     *     returns java.util.List<itmo.web_services.service.Book>
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "getBooks", targetNamespace = "http://service.web_services.itmo/", className = "itmo.web_services.service.GetBooks")
+    @ResponseWrapper(localName = "getBooksResponse", targetNamespace = "http://service.web_services.itmo/", className = "itmo.web_services.service.GetBooksResponse")
+    @Action(input = "http://service.web_services.itmo/BooksWebService/getBooksRequest", output = "http://service.web_services.itmo/BooksWebService/getBooksResponse")
+    public List<Book> getBooks();
+
+    /**
+     * 
      * @param publishingHouse
      * @param title
      * @return
@@ -58,81 +172,6 @@ public interface BooksWebService {
     public List<Book> getBooksByAuthorAndPublishingHouse(
         @WebParam(name = "author", targetNamespace = "")
         String author,
-        @WebParam(name = "publishingHouse", targetNamespace = "")
-        String publishingHouse);
-
-    /**
-     * 
-     * @return
-     *     returns java.util.List<itmo.web_services.service.Book>
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "getBooks", targetNamespace = "http://service.web_services.itmo/", className = "itmo.web_services.service.GetBooks")
-    @ResponseWrapper(localName = "getBooksResponse", targetNamespace = "http://service.web_services.itmo/", className = "itmo.web_services.service.GetBooksResponse")
-    @Action(input = "http://service.web_services.itmo/BooksWebService/getBooksRequest", output = "http://service.web_services.itmo/BooksWebService/getBooksResponse")
-    public List<Book> getBooks();
-
-    /**
-     * 
-     * @param title
-     * @return
-     *     returns java.util.List<itmo.web_services.service.Book>
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "getBooksByTitle", targetNamespace = "http://service.web_services.itmo/", className = "itmo.web_services.service.GetBooksByTitle")
-    @ResponseWrapper(localName = "getBooksByTitleResponse", targetNamespace = "http://service.web_services.itmo/", className = "itmo.web_services.service.GetBooksByTitleResponse")
-    @Action(input = "http://service.web_services.itmo/BooksWebService/getBooksByTitleRequest", output = "http://service.web_services.itmo/BooksWebService/getBooksByTitleResponse")
-    public List<Book> getBooksByTitle(
-        @WebParam(name = "title", targetNamespace = "")
-        String title);
-
-    /**
-     * 
-     * @param author
-     * @return
-     *     returns java.util.List<itmo.web_services.service.Book>
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "getBooksByAuthor", targetNamespace = "http://service.web_services.itmo/", className = "itmo.web_services.service.GetBooksByAuthor")
-    @ResponseWrapper(localName = "getBooksByAuthorResponse", targetNamespace = "http://service.web_services.itmo/", className = "itmo.web_services.service.GetBooksByAuthorResponse")
-    @Action(input = "http://service.web_services.itmo/BooksWebService/getBooksByAuthorRequest", output = "http://service.web_services.itmo/BooksWebService/getBooksByAuthorResponse")
-    public List<Book> getBooksByAuthor(
-        @WebParam(name = "author", targetNamespace = "")
-        String author);
-
-    /**
-     * 
-     * @param min
-     * @param author
-     * @return
-     *     returns java.util.List<itmo.web_services.service.Book>
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "getBooksByAuthorAndMinPages", targetNamespace = "http://service.web_services.itmo/", className = "itmo.web_services.service.GetBooksByAuthorAndMinPages")
-    @ResponseWrapper(localName = "getBooksByAuthorAndMinPagesResponse", targetNamespace = "http://service.web_services.itmo/", className = "itmo.web_services.service.GetBooksByAuthorAndMinPagesResponse")
-    @Action(input = "http://service.web_services.itmo/BooksWebService/getBooksByAuthorAndMinPagesRequest", output = "http://service.web_services.itmo/BooksWebService/getBooksByAuthorAndMinPagesResponse")
-    public List<Book> getBooksByAuthorAndMinPages(
-        @WebParam(name = "author", targetNamespace = "")
-        String author,
-        @WebParam(name = "min", targetNamespace = "")
-        int min);
-
-    /**
-     * 
-     * @param publishingHouse
-     * @return
-     *     returns java.util.List<itmo.web_services.service.Book>
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "getBooksByPublishingHouse", targetNamespace = "http://service.web_services.itmo/", className = "itmo.web_services.service.GetBooksByPublishingHouse")
-    @ResponseWrapper(localName = "getBooksByPublishingHouseResponse", targetNamespace = "http://service.web_services.itmo/", className = "itmo.web_services.service.GetBooksByPublishingHouseResponse")
-    @Action(input = "http://service.web_services.itmo/BooksWebService/getBooksByPublishingHouseRequest", output = "http://service.web_services.itmo/BooksWebService/getBooksByPublishingHouseResponse")
-    public List<Book> getBooksByPublishingHouse(
         @WebParam(name = "publishingHouse", targetNamespace = "")
         String publishingHouse);
 
@@ -174,6 +213,24 @@ public interface BooksWebService {
 
     /**
      * 
+     * @param min
+     * @param author
+     * @return
+     *     returns java.util.List<itmo.web_services.service.Book>
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "getBooksByAuthorAndMinPages", targetNamespace = "http://service.web_services.itmo/", className = "itmo.web_services.service.GetBooksByAuthorAndMinPages")
+    @ResponseWrapper(localName = "getBooksByAuthorAndMinPagesResponse", targetNamespace = "http://service.web_services.itmo/", className = "itmo.web_services.service.GetBooksByAuthorAndMinPagesResponse")
+    @Action(input = "http://service.web_services.itmo/BooksWebService/getBooksByAuthorAndMinPagesRequest", output = "http://service.web_services.itmo/BooksWebService/getBooksByAuthorAndMinPagesResponse")
+    public List<Book> getBooksByAuthorAndMinPages(
+        @WebParam(name = "author", targetNamespace = "")
+        String author,
+        @WebParam(name = "min", targetNamespace = "")
+        int min);
+
+    /**
+     * 
      * @param max
      * @param author
      * @return
@@ -189,5 +246,20 @@ public interface BooksWebService {
         String author,
         @WebParam(name = "max", targetNamespace = "")
         int max);
+
+    /**
+     * 
+     * @param publishingHouse
+     * @return
+     *     returns java.util.List<itmo.web_services.service.Book>
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "getBooksByPublishingHouse", targetNamespace = "http://service.web_services.itmo/", className = "itmo.web_services.service.GetBooksByPublishingHouse")
+    @ResponseWrapper(localName = "getBooksByPublishingHouseResponse", targetNamespace = "http://service.web_services.itmo/", className = "itmo.web_services.service.GetBooksByPublishingHouseResponse")
+    @Action(input = "http://service.web_services.itmo/BooksWebService/getBooksByPublishingHouseRequest", output = "http://service.web_services.itmo/BooksWebService/getBooksByPublishingHouseResponse")
+    public List<Book> getBooksByPublishingHouse(
+        @WebParam(name = "publishingHouse", targetNamespace = "")
+        String publishingHouse);
 
 }

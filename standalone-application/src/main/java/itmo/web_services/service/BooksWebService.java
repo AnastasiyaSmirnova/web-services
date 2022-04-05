@@ -2,6 +2,8 @@ package itmo.web_services.service;
 
 import itmo.web_services.dao.BookDao;
 import itmo.web_services.model.Book;
+import itmo.web_services.model.Language;
+import itmo.web_services.model.QueryStatus;
 
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
@@ -15,6 +17,30 @@ public class BooksWebService {
 
     public BooksWebService() {
         bookDao = new BookDao();
+    }
+
+    @WebMethod(operationName = "addBook")
+    public long addBook(@WebParam(name = "title") @XmlElement(required = true) String title,
+                        @WebParam(name = "author") @XmlElement(required = true) String author,
+                        @WebParam(name = "publishing_house") @XmlElement(required = true) String publishing_house,
+                        @WebParam(name = "language") @XmlElement(required = true) Language language,
+                        @WebParam(name = "pages") @XmlElement(required = true) int pages) {
+        return bookDao.addBook(title, author, publishing_house, language, pages);
+    }
+
+    @WebMethod(operationName = "updateBook")
+    public QueryStatus updateBook(@WebParam(name = "id") @XmlElement(required = true) long id,
+                                  @WebParam(name = "title") @XmlElement(required = true) String title,
+                                  @WebParam(name = "author") @XmlElement(required = true) String author,
+                                  @WebParam(name = "publishing_house") @XmlElement(required = true) String publishing_house,
+                                  @WebParam(name = "language") @XmlElement(required = true) Language language,
+                                  @WebParam(name = "pages") @XmlElement(required = true) int pages) {
+        return bookDao.updateBook(id, title, author, publishing_house, language, pages);
+    }
+
+    @WebMethod(operationName = "deleteBook")
+    public QueryStatus deleteBook(@WebParam(name = "id") @XmlElement(required = true) long id) {
+        return bookDao.deleteBook(id);
     }
 
     @WebMethod(operationName = "getBooks")

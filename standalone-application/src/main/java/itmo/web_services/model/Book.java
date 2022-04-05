@@ -5,16 +5,18 @@ public class Book {
     private String title;
     private String author;
     private String publishingHouse;
+    private Language language;
     private int pages;
 
     public Book() {
     }
 
-    public Book(long id, String title, String author, String publishingHouse, int pages) {
+    public Book(long id, String title, String author, String publishingHouse, Language language, int pages) {
         this.id = id;
         this.title = title;
         this.author = author;
         this.publishingHouse = publishingHouse;
+        this.language = language;
         this.pages = pages;
     }
 
@@ -34,6 +36,10 @@ public class Book {
         this.publishingHouse = publishingHouse;
     }
 
+    public void setLanguage(Language language) {
+        this.language = language;
+    }
+
     public void setPages(int pages) {
         this.pages = pages;
     }
@@ -48,6 +54,10 @@ public class Book {
 
     public String getAuthor() {
         return author;
+    }
+
+    public Language getLanguage() {
+        return language;
     }
 
     public String getPublishingHouse() {

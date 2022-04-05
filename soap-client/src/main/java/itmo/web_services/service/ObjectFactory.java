@@ -24,25 +24,31 @@ import javax.xml.namespace.QName;
 @XmlRegistry
 public class ObjectFactory {
 
-    private final static QName _GetBooksByTitleAndAuthorResponse_QNAME = new QName("http://service.web_services.itmo/", "getBooksByTitleAndAuthorResponse");
     private final static QName _GetBooksByTitleAndPublishingHouse_QNAME = new QName("http://service.web_services.itmo/", "getBooksByTitleAndPublishingHouse");
+    private final static QName _UpdateBookResponse_QNAME = new QName("http://service.web_services.itmo/", "updateBookResponse");
     private final static QName _GetBooksByPagesRange_QNAME = new QName("http://service.web_services.itmo/", "getBooksByPagesRange");
-    private final static QName _GetBooksByAuthorAndPublishingHouse_QNAME = new QName("http://service.web_services.itmo/", "getBooksByAuthorAndPublishingHouse");
-    private final static QName _GetBooksByPublishingHouse_QNAME = new QName("http://service.web_services.itmo/", "getBooksByPublishingHouse");
     private final static QName _GetBooksByTitle_QNAME = new QName("http://service.web_services.itmo/", "getBooksByTitle");
     private final static QName _GetBooksByTitleAndPublishingHouseResponse_QNAME = new QName("http://service.web_services.itmo/", "getBooksByTitleAndPublishingHouseResponse");
-    private final static QName _GetBooksByPublishingHouseResponse_QNAME = new QName("http://service.web_services.itmo/", "getBooksByPublishingHouseResponse");
-    private final static QName _GetBooksByTitleResponse_QNAME = new QName("http://service.web_services.itmo/", "getBooksByTitleResponse");
-    private final static QName _GetBooksByAuthorAndMaxPagesResponse_QNAME = new QName("http://service.web_services.itmo/", "getBooksByAuthorAndMaxPagesResponse");
+    private final static QName _AddBookResponse_QNAME = new QName("http://service.web_services.itmo/", "addBookResponse");
     private final static QName _GetBooksByAuthorAndMinPagesResponse_QNAME = new QName("http://service.web_services.itmo/", "getBooksByAuthorAndMinPagesResponse");
-    private final static QName _GetBooks_QNAME = new QName("http://service.web_services.itmo/", "getBooks");
     private final static QName _GetBooksByAuthorAndMinPages_QNAME = new QName("http://service.web_services.itmo/", "getBooksByAuthorAndMinPages");
     private final static QName _GetBooksByAuthorAndPublishingHouseResponse_QNAME = new QName("http://service.web_services.itmo/", "getBooksByAuthorAndPublishingHouseResponse");
     private final static QName _GetBooksResponse_QNAME = new QName("http://service.web_services.itmo/", "getBooksResponse");
-    private final static QName _GetBooksByAuthorAndMaxPages_QNAME = new QName("http://service.web_services.itmo/", "getBooksByAuthorAndMaxPages");
-    private final static QName _GetBooksByAuthor_QNAME = new QName("http://service.web_services.itmo/", "getBooksByAuthor");
     private final static QName _GetBooksByAuthorResponse_QNAME = new QName("http://service.web_services.itmo/", "getBooksByAuthorResponse");
     private final static QName _GetBooksByTitleAndAuthor_QNAME = new QName("http://service.web_services.itmo/", "getBooksByTitleAndAuthor");
+    private final static QName _AddBook_QNAME = new QName("http://service.web_services.itmo/", "addBook");
+    private final static QName _GetBooksByTitleAndAuthorResponse_QNAME = new QName("http://service.web_services.itmo/", "getBooksByTitleAndAuthorResponse");
+    private final static QName _DeleteBookResponse_QNAME = new QName("http://service.web_services.itmo/", "deleteBookResponse");
+    private final static QName _GetBooksByAuthorAndPublishingHouse_QNAME = new QName("http://service.web_services.itmo/", "getBooksByAuthorAndPublishingHouse");
+    private final static QName _DeleteBook_QNAME = new QName("http://service.web_services.itmo/", "deleteBook");
+    private final static QName _GetBooksByPublishingHouse_QNAME = new QName("http://service.web_services.itmo/", "getBooksByPublishingHouse");
+    private final static QName _GetBooksByPublishingHouseResponse_QNAME = new QName("http://service.web_services.itmo/", "getBooksByPublishingHouseResponse");
+    private final static QName _GetBooksByTitleResponse_QNAME = new QName("http://service.web_services.itmo/", "getBooksByTitleResponse");
+    private final static QName _GetBooksByAuthorAndMaxPagesResponse_QNAME = new QName("http://service.web_services.itmo/", "getBooksByAuthorAndMaxPagesResponse");
+    private final static QName _UpdateBook_QNAME = new QName("http://service.web_services.itmo/", "updateBook");
+    private final static QName _GetBooks_QNAME = new QName("http://service.web_services.itmo/", "getBooks");
+    private final static QName _GetBooksByAuthorAndMaxPages_QNAME = new QName("http://service.web_services.itmo/", "getBooksByAuthorAndMaxPages");
+    private final static QName _GetBooksByAuthor_QNAME = new QName("http://service.web_services.itmo/", "getBooksByAuthor");
     private final static QName _GetBooksByPagesRangeResponse_QNAME = new QName("http://service.web_services.itmo/", "getBooksByPagesRangeResponse");
 
     /**
@@ -50,14 +56,6 @@ public class ObjectFactory {
      * 
      */
     public ObjectFactory() {
-    }
-
-    /**
-     * Create an instance of {@link GetBooksByAuthorAndPublishingHouseResponse }
-     * 
-     */
-    public GetBooksByAuthorAndPublishingHouseResponse createGetBooksByAuthorAndPublishingHouseResponse() {
-        return new GetBooksByAuthorAndPublishingHouseResponse();
     }
 
     /**
@@ -69,19 +67,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link GetBooksByAuthorAndMinPages }
+     * Create an instance of {@link UpdateBook }
      * 
      */
-    public GetBooksByAuthorAndMinPages createGetBooksByAuthorAndMinPages() {
-        return new GetBooksByAuthorAndMinPages();
-    }
-
-    /**
-     * Create an instance of {@link GetBooksByAuthorAndMinPagesResponse }
-     * 
-     */
-    public GetBooksByAuthorAndMinPagesResponse createGetBooksByAuthorAndMinPagesResponse() {
-        return new GetBooksByAuthorAndMinPagesResponse();
+    public UpdateBook createUpdateBook() {
+        return new UpdateBook();
     }
 
     /**
@@ -109,35 +99,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link GetBooksByAuthorResponse }
-     * 
-     */
-    public GetBooksByAuthorResponse createGetBooksByAuthorResponse() {
-        return new GetBooksByAuthorResponse();
-    }
-
-    /**
-     * Create an instance of {@link GetBooksByTitleAndAuthor }
-     * 
-     */
-    public GetBooksByTitleAndAuthor createGetBooksByTitleAndAuthor() {
-        return new GetBooksByTitleAndAuthor();
-    }
-
-    /**
      * Create an instance of {@link GetBooksByAuthorAndMaxPages }
      * 
      */
     public GetBooksByAuthorAndMaxPages createGetBooksByAuthorAndMaxPages() {
         return new GetBooksByAuthorAndMaxPages();
-    }
-
-    /**
-     * Create an instance of {@link GetBooksResponse }
-     * 
-     */
-    public GetBooksResponse createGetBooksResponse() {
-        return new GetBooksResponse();
     }
 
     /**
@@ -149,11 +115,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link GetBooksByTitle }
+     * Create an instance of {@link DeleteBook }
      * 
      */
-    public GetBooksByTitle createGetBooksByTitle() {
-        return new GetBooksByTitle();
+    public DeleteBook createDeleteBook() {
+        return new DeleteBook();
     }
 
     /**
@@ -165,11 +131,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link GetBooksByPagesRange }
+     * Create an instance of {@link DeleteBookResponse }
      * 
      */
-    public GetBooksByPagesRange createGetBooksByPagesRange() {
-        return new GetBooksByPagesRange();
+    public DeleteBookResponse createDeleteBookResponse() {
+        return new DeleteBookResponse();
     }
 
     /**
@@ -178,14 +144,6 @@ public class ObjectFactory {
      */
     public GetBooksByTitleAndAuthorResponse createGetBooksByTitleAndAuthorResponse() {
         return new GetBooksByTitleAndAuthorResponse();
-    }
-
-    /**
-     * Create an instance of {@link GetBooksByTitleAndPublishingHouse }
-     * 
-     */
-    public GetBooksByTitleAndPublishingHouse createGetBooksByTitleAndPublishingHouse() {
-        return new GetBooksByTitleAndPublishingHouse();
     }
 
     /**
@@ -205,6 +163,102 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link GetBooksByAuthorAndPublishingHouseResponse }
+     * 
+     */
+    public GetBooksByAuthorAndPublishingHouseResponse createGetBooksByAuthorAndPublishingHouseResponse() {
+        return new GetBooksByAuthorAndPublishingHouseResponse();
+    }
+
+    /**
+     * Create an instance of {@link GetBooksByAuthorAndMinPages }
+     * 
+     */
+    public GetBooksByAuthorAndMinPages createGetBooksByAuthorAndMinPages() {
+        return new GetBooksByAuthorAndMinPages();
+    }
+
+    /**
+     * Create an instance of {@link GetBooksByAuthorAndMinPagesResponse }
+     * 
+     */
+    public GetBooksByAuthorAndMinPagesResponse createGetBooksByAuthorAndMinPagesResponse() {
+        return new GetBooksByAuthorAndMinPagesResponse();
+    }
+
+    /**
+     * Create an instance of {@link AddBookResponse }
+     * 
+     */
+    public AddBookResponse createAddBookResponse() {
+        return new AddBookResponse();
+    }
+
+    /**
+     * Create an instance of {@link AddBook }
+     * 
+     */
+    public AddBook createAddBook() {
+        return new AddBook();
+    }
+
+    /**
+     * Create an instance of {@link GetBooksByAuthorResponse }
+     * 
+     */
+    public GetBooksByAuthorResponse createGetBooksByAuthorResponse() {
+        return new GetBooksByAuthorResponse();
+    }
+
+    /**
+     * Create an instance of {@link GetBooksByTitleAndAuthor }
+     * 
+     */
+    public GetBooksByTitleAndAuthor createGetBooksByTitleAndAuthor() {
+        return new GetBooksByTitleAndAuthor();
+    }
+
+    /**
+     * Create an instance of {@link GetBooksResponse }
+     * 
+     */
+    public GetBooksResponse createGetBooksResponse() {
+        return new GetBooksResponse();
+    }
+
+    /**
+     * Create an instance of {@link GetBooksByTitle }
+     * 
+     */
+    public GetBooksByTitle createGetBooksByTitle() {
+        return new GetBooksByTitle();
+    }
+
+    /**
+     * Create an instance of {@link GetBooksByPagesRange }
+     * 
+     */
+    public GetBooksByPagesRange createGetBooksByPagesRange() {
+        return new GetBooksByPagesRange();
+    }
+
+    /**
+     * Create an instance of {@link GetBooksByTitleAndPublishingHouse }
+     * 
+     */
+    public GetBooksByTitleAndPublishingHouse createGetBooksByTitleAndPublishingHouse() {
+        return new GetBooksByTitleAndPublishingHouse();
+    }
+
+    /**
+     * Create an instance of {@link UpdateBookResponse }
+     * 
+     */
+    public UpdateBookResponse createUpdateBookResponse() {
+        return new UpdateBookResponse();
+    }
+
+    /**
      * Create an instance of {@link GetBooksByTitleAndPublishingHouseResponse }
      * 
      */
@@ -221,15 +275,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link GetBooksByTitleAndAuthorResponse }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://service.web_services.itmo/", name = "getBooksByTitleAndAuthorResponse")
-    public JAXBElement<GetBooksByTitleAndAuthorResponse> createGetBooksByTitleAndAuthorResponse(GetBooksByTitleAndAuthorResponse value) {
-        return new JAXBElement<GetBooksByTitleAndAuthorResponse>(_GetBooksByTitleAndAuthorResponse_QNAME, GetBooksByTitleAndAuthorResponse.class, null, value);
-    }
-
-    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link GetBooksByTitleAndPublishingHouse }{@code >}}
      * 
      */
@@ -239,30 +284,21 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link UpdateBookResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service.web_services.itmo/", name = "updateBookResponse")
+    public JAXBElement<UpdateBookResponse> createUpdateBookResponse(UpdateBookResponse value) {
+        return new JAXBElement<UpdateBookResponse>(_UpdateBookResponse_QNAME, UpdateBookResponse.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link GetBooksByPagesRange }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "http://service.web_services.itmo/", name = "getBooksByPagesRange")
     public JAXBElement<GetBooksByPagesRange> createGetBooksByPagesRange(GetBooksByPagesRange value) {
         return new JAXBElement<GetBooksByPagesRange>(_GetBooksByPagesRange_QNAME, GetBooksByPagesRange.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link GetBooksByAuthorAndPublishingHouse }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://service.web_services.itmo/", name = "getBooksByAuthorAndPublishingHouse")
-    public JAXBElement<GetBooksByAuthorAndPublishingHouse> createGetBooksByAuthorAndPublishingHouse(GetBooksByAuthorAndPublishingHouse value) {
-        return new JAXBElement<GetBooksByAuthorAndPublishingHouse>(_GetBooksByAuthorAndPublishingHouse_QNAME, GetBooksByAuthorAndPublishingHouse.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link GetBooksByPublishingHouse }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://service.web_services.itmo/", name = "getBooksByPublishingHouse")
-    public JAXBElement<GetBooksByPublishingHouse> createGetBooksByPublishingHouse(GetBooksByPublishingHouse value) {
-        return new JAXBElement<GetBooksByPublishingHouse>(_GetBooksByPublishingHouse_QNAME, GetBooksByPublishingHouse.class, null, value);
     }
 
     /**
@@ -284,30 +320,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link GetBooksByPublishingHouseResponse }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link AddBookResponse }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://service.web_services.itmo/", name = "getBooksByPublishingHouseResponse")
-    public JAXBElement<GetBooksByPublishingHouseResponse> createGetBooksByPublishingHouseResponse(GetBooksByPublishingHouseResponse value) {
-        return new JAXBElement<GetBooksByPublishingHouseResponse>(_GetBooksByPublishingHouseResponse_QNAME, GetBooksByPublishingHouseResponse.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link GetBooksByTitleResponse }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://service.web_services.itmo/", name = "getBooksByTitleResponse")
-    public JAXBElement<GetBooksByTitleResponse> createGetBooksByTitleResponse(GetBooksByTitleResponse value) {
-        return new JAXBElement<GetBooksByTitleResponse>(_GetBooksByTitleResponse_QNAME, GetBooksByTitleResponse.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link GetBooksByAuthorAndMaxPagesResponse }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://service.web_services.itmo/", name = "getBooksByAuthorAndMaxPagesResponse")
-    public JAXBElement<GetBooksByAuthorAndMaxPagesResponse> createGetBooksByAuthorAndMaxPagesResponse(GetBooksByAuthorAndMaxPagesResponse value) {
-        return new JAXBElement<GetBooksByAuthorAndMaxPagesResponse>(_GetBooksByAuthorAndMaxPagesResponse_QNAME, GetBooksByAuthorAndMaxPagesResponse.class, null, value);
+    @XmlElementDecl(namespace = "http://service.web_services.itmo/", name = "addBookResponse")
+    public JAXBElement<AddBookResponse> createAddBookResponse(AddBookResponse value) {
+        return new JAXBElement<AddBookResponse>(_AddBookResponse_QNAME, AddBookResponse.class, null, value);
     }
 
     /**
@@ -317,15 +335,6 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://service.web_services.itmo/", name = "getBooksByAuthorAndMinPagesResponse")
     public JAXBElement<GetBooksByAuthorAndMinPagesResponse> createGetBooksByAuthorAndMinPagesResponse(GetBooksByAuthorAndMinPagesResponse value) {
         return new JAXBElement<GetBooksByAuthorAndMinPagesResponse>(_GetBooksByAuthorAndMinPagesResponse_QNAME, GetBooksByAuthorAndMinPagesResponse.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link GetBooks }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://service.web_services.itmo/", name = "getBooks")
-    public JAXBElement<GetBooks> createGetBooks(GetBooks value) {
-        return new JAXBElement<GetBooks>(_GetBooks_QNAME, GetBooks.class, null, value);
     }
 
     /**
@@ -356,24 +365,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link GetBooksByAuthorAndMaxPages }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://service.web_services.itmo/", name = "getBooksByAuthorAndMaxPages")
-    public JAXBElement<GetBooksByAuthorAndMaxPages> createGetBooksByAuthorAndMaxPages(GetBooksByAuthorAndMaxPages value) {
-        return new JAXBElement<GetBooksByAuthorAndMaxPages>(_GetBooksByAuthorAndMaxPages_QNAME, GetBooksByAuthorAndMaxPages.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link GetBooksByAuthor }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://service.web_services.itmo/", name = "getBooksByAuthor")
-    public JAXBElement<GetBooksByAuthor> createGetBooksByAuthor(GetBooksByAuthor value) {
-        return new JAXBElement<GetBooksByAuthor>(_GetBooksByAuthor_QNAME, GetBooksByAuthor.class, null, value);
-    }
-
-    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link GetBooksByAuthorResponse }{@code >}}
      * 
      */
@@ -389,6 +380,123 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://service.web_services.itmo/", name = "getBooksByTitleAndAuthor")
     public JAXBElement<GetBooksByTitleAndAuthor> createGetBooksByTitleAndAuthor(GetBooksByTitleAndAuthor value) {
         return new JAXBElement<GetBooksByTitleAndAuthor>(_GetBooksByTitleAndAuthor_QNAME, GetBooksByTitleAndAuthor.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link AddBook }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service.web_services.itmo/", name = "addBook")
+    public JAXBElement<AddBook> createAddBook(AddBook value) {
+        return new JAXBElement<AddBook>(_AddBook_QNAME, AddBook.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetBooksByTitleAndAuthorResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service.web_services.itmo/", name = "getBooksByTitleAndAuthorResponse")
+    public JAXBElement<GetBooksByTitleAndAuthorResponse> createGetBooksByTitleAndAuthorResponse(GetBooksByTitleAndAuthorResponse value) {
+        return new JAXBElement<GetBooksByTitleAndAuthorResponse>(_GetBooksByTitleAndAuthorResponse_QNAME, GetBooksByTitleAndAuthorResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link DeleteBookResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service.web_services.itmo/", name = "deleteBookResponse")
+    public JAXBElement<DeleteBookResponse> createDeleteBookResponse(DeleteBookResponse value) {
+        return new JAXBElement<DeleteBookResponse>(_DeleteBookResponse_QNAME, DeleteBookResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetBooksByAuthorAndPublishingHouse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service.web_services.itmo/", name = "getBooksByAuthorAndPublishingHouse")
+    public JAXBElement<GetBooksByAuthorAndPublishingHouse> createGetBooksByAuthorAndPublishingHouse(GetBooksByAuthorAndPublishingHouse value) {
+        return new JAXBElement<GetBooksByAuthorAndPublishingHouse>(_GetBooksByAuthorAndPublishingHouse_QNAME, GetBooksByAuthorAndPublishingHouse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link DeleteBook }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service.web_services.itmo/", name = "deleteBook")
+    public JAXBElement<DeleteBook> createDeleteBook(DeleteBook value) {
+        return new JAXBElement<DeleteBook>(_DeleteBook_QNAME, DeleteBook.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetBooksByPublishingHouse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service.web_services.itmo/", name = "getBooksByPublishingHouse")
+    public JAXBElement<GetBooksByPublishingHouse> createGetBooksByPublishingHouse(GetBooksByPublishingHouse value) {
+        return new JAXBElement<GetBooksByPublishingHouse>(_GetBooksByPublishingHouse_QNAME, GetBooksByPublishingHouse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetBooksByPublishingHouseResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service.web_services.itmo/", name = "getBooksByPublishingHouseResponse")
+    public JAXBElement<GetBooksByPublishingHouseResponse> createGetBooksByPublishingHouseResponse(GetBooksByPublishingHouseResponse value) {
+        return new JAXBElement<GetBooksByPublishingHouseResponse>(_GetBooksByPublishingHouseResponse_QNAME, GetBooksByPublishingHouseResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetBooksByTitleResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service.web_services.itmo/", name = "getBooksByTitleResponse")
+    public JAXBElement<GetBooksByTitleResponse> createGetBooksByTitleResponse(GetBooksByTitleResponse value) {
+        return new JAXBElement<GetBooksByTitleResponse>(_GetBooksByTitleResponse_QNAME, GetBooksByTitleResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetBooksByAuthorAndMaxPagesResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service.web_services.itmo/", name = "getBooksByAuthorAndMaxPagesResponse")
+    public JAXBElement<GetBooksByAuthorAndMaxPagesResponse> createGetBooksByAuthorAndMaxPagesResponse(GetBooksByAuthorAndMaxPagesResponse value) {
+        return new JAXBElement<GetBooksByAuthorAndMaxPagesResponse>(_GetBooksByAuthorAndMaxPagesResponse_QNAME, GetBooksByAuthorAndMaxPagesResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link UpdateBook }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service.web_services.itmo/", name = "updateBook")
+    public JAXBElement<UpdateBook> createUpdateBook(UpdateBook value) {
+        return new JAXBElement<UpdateBook>(_UpdateBook_QNAME, UpdateBook.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetBooks }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service.web_services.itmo/", name = "getBooks")
+    public JAXBElement<GetBooks> createGetBooks(GetBooks value) {
+        return new JAXBElement<GetBooks>(_GetBooks_QNAME, GetBooks.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetBooksByAuthorAndMaxPages }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service.web_services.itmo/", name = "getBooksByAuthorAndMaxPages")
+    public JAXBElement<GetBooksByAuthorAndMaxPages> createGetBooksByAuthorAndMaxPages(GetBooksByAuthorAndMaxPages value) {
+        return new JAXBElement<GetBooksByAuthorAndMaxPages>(_GetBooksByAuthorAndMaxPages_QNAME, GetBooksByAuthorAndMaxPages.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetBooksByAuthor }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service.web_services.itmo/", name = "getBooksByAuthor")
+    public JAXBElement<GetBooksByAuthor> createGetBooksByAuthor(GetBooksByAuthor value) {
+        return new JAXBElement<GetBooksByAuthor>(_GetBooksByAuthor_QNAME, GetBooksByAuthor.class, null, value);
     }
 
     /**

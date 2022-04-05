@@ -1,8 +1,10 @@
 package itmo.web_services;
 
+
 import itmo.web_services.service.Book;
 import itmo.web_services.service.BookService;
-
+import itmo.web_services.service.Language;
+import itmo.web_services.service.QueryStatus;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -45,6 +47,9 @@ public class WebClient {
                 "\n8 - get books by author and min pages number " +
                 "\n9 - get books by author and max pages number" +
                 "\n10 - get books" +
+                "\n11 - add new book" +
+                "\n12 - update book " +
+                "\n13 - delete book" +
                 "\n0 - exit");
 
         while ((next = Integer.parseInt(in.nextLine())) > 0) {
@@ -89,12 +94,56 @@ public class WebClient {
                     getBooks();
                     break;
                 }
+                case 11: {
+                    addBook(in);
+                    break;
+                }
+                case 12: {
+                    updateBook(in);
+                    break;
+                }
+                case 13: {
+                    deleteBook(in);
+                }
                 default: {
                     System.out.println("unknown action");
                 }
             }
         }
         in.close();
+    }
+
+
+    private void addBook(Scanner in) {
+        String title = enterTitle(in);
+        String author = enterAuthor(in);
+        String pubHouse = enterPubHouse(in);
+        Language lang = enterLanguage(in);
+        int pages = enterInt(in, "pages");
+
+        long newId = bookService.getBooksWebServicePort().addBook(title, author, pubHouse, lang, pages);
+        System.out.println("Add book, ID = " + newId);
+        getBooks();
+    }
+
+    private void updateBook(Scanner in) {
+        long bookId = enterBookId(in);
+        String title = enterTitle(in);
+        String author = enterAuthor(in);
+        String pubHouse = enterPubHouse(in);
+        Language lang = enterLanguage(in);
+        int pages = enterInt(in, "pages");
+
+        QueryStatus st = bookService.getBooksWebServicePort().updateBook(bookId, title, author, pubHouse, lang, pages);
+        System.out.println("Update book - " + st);
+        getBooks();
+    }
+
+    private void deleteBook(Scanner in) {
+        long id = enterBookId(in);
+        QueryStatus st = bookService.getBooksWebServicePort().deleteBook(id);
+        System.out.println("Delete book - " + st);
+        getBooks();
     }
 
     private void getBooks() {
@@ -134,8 +183,8 @@ public class WebClient {
     }
 
     private void getBooksByPagesRange(Scanner in) {
-        int min = enterMin(in);
-        int max = enterMax(in);
+        int min = enterInt(in, "min");
+        int max = enterInt(in, "max");
 
         printResponse(
                 bookService.getBooksWebServicePort().getBooksByPagesRange(min, max)
@@ -169,7 +218,7 @@ public class WebClient {
 
     private void getBooksByAuthorAndMinPages(Scanner in) {
         String author = enterAuthor(in);
-        int min = enterMin(in);
+        int min = enterInt(in, "min");
         printResponse(
                 bookService.getBooksWebServicePort().getBooksByAuthorAndMinPages(author, min)
         );
@@ -177,7 +226,7 @@ public class WebClient {
 
     private void getBooksByAuthorAndMaxPages(Scanner in) {
         String author = enterAuthor(in);
-        int max = enterMax(in);
+        int max = enterInt(in, "max");
         printResponse(
                 bookService.getBooksWebServicePort().getBooksByAuthorAndMaxPages(author, max)
         );
@@ -198,14 +247,19 @@ public class WebClient {
         return in.nextLine();
     }
 
-    private int enterMin(Scanner in) {
-        System.out.println("Enter min:");
+    private Language enterLanguage(Scanner in) {
+        System.out.println("Enter language: RUSSIAN or ENGLISH");
+        return Language.fromValue(in.nextLine());
+    }
+
+    private int enterInt(Scanner in, String text) {
+        System.out.println("Enter " + text);
         return Integer.parseInt(in.nextLine());
     }
 
-    private int enterMax(Scanner in) {
-        System.out.println("Enter max:");
-        return Integer.parseInt(in.nextLine());
+    private long enterBookId(Scanner in) {
+        System.out.println("Enter book id");
+        return Long.parseLong(in.nextLine());
     }
 
     private void printResponse(List<Book> books) {
