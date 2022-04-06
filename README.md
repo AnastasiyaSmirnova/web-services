@@ -28,12 +28,12 @@
     * model
         * Book
     * dao
-        * Executor
+        * *Executor*
         * BookDao
     * service
         * BookService
     * StandaloneApplication ( main() )
-    * ConnectionUtil (connection tp DB)
+    * ConnectionUtil (connection to DB)
 
 
 2. Java EE application ( Glassfish )
@@ -87,11 +87,11 @@ IllegalParameterException*](https://github.com/AnastasiyaSmirnova/web-services/b
 [*класс
 BookServiceFault*](https://github.com/AnastasiyaSmirnova/web-services/blob/laboratory-work-3/standalone-application/src/main/java/itmo/web_services/exception/BookServiceFault.java)
 
-*Измененная сруктура проекта:*
+*Измененная структура проекта:*
 * model
   * Book
   * dao
-     * Executor
+     * *Executor*
      * BookDao
   * service
      * BookService
@@ -99,4 +99,4 @@ BookServiceFault*](https://github.com/AnastasiyaSmirnova/web-services/blob/labor
     * IllegalParameterException
     * BookServiceFault
   * StandaloneApplication ( main() )
-  * ConnectionUtil (connection tp DB)
+  * ConnectionUtil (connection to DB)
