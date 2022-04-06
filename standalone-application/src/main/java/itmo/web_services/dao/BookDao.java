@@ -17,6 +17,16 @@ public class BookDao {
         this.executor = new Executor();
     }
 
+    public Book getBookById(long id) throws SQLException {
+        return executor.execQuery(
+                "select * from books where id =" + id,
+                result -> {
+                    result.next();
+                    return generateBook(result);
+                }
+        );
+    }
+
     // return id of added book
     public long addBook(String title, String author, String pubHouse, Language language, int pages) {
         try {

@@ -1,10 +1,7 @@
 package itmo.web_services;
 
 
-import itmo.web_services.service.Book;
-import itmo.web_services.service.BookService;
-import itmo.web_services.service.Language;
-import itmo.web_services.service.QueryStatus;
+import itmo.web_services.service.*;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -119,12 +116,16 @@ public class WebClient {
         String title = enterTitle(in);
         String author = enterAuthor(in);
         String pubHouse = enterPubHouse(in);
-        Language lang = enterLanguage(in);
-        int pages = enterInt(in, "pages");
+        String lang = enterLanguage(in);
+        String pages = enterNumber(in);
 
-        long newId = bookService.getBooksWebServicePort().addBook(title, author, pubHouse, lang, pages);
-        System.out.println("Add book, ID = " + newId);
-        getBooks();
+        try {
+            long newId = bookService.getBooksWebServicePort().addBook(title, author, pubHouse, lang, pages);
+            System.out.println("Add book, ID = " + newId);
+            getBooks();
+        } catch (IllegalParameterException e) {
+            System.err.println(e.getFaultInfo().getMessage());
+        }
     }
 
     private void updateBook(Scanner in) {
@@ -132,19 +133,28 @@ public class WebClient {
         String title = enterTitle(in);
         String author = enterAuthor(in);
         String pubHouse = enterPubHouse(in);
-        Language lang = enterLanguage(in);
-        int pages = enterInt(in, "pages");
+        String lang = enterLanguage(in);
+        String pages = enterNumber(in);
 
-        QueryStatus st = bookService.getBooksWebServicePort().updateBook(bookId, title, author, pubHouse, lang, pages);
-        System.out.println("Update book - " + st);
-        getBooks();
+        try {
+            QueryStatus st = bookService.getBooksWebServicePort().updateBook(bookId, title, author, pubHouse, lang, pages);
+            System.out.println("Update book - " + st);
+            getBooks();
+        } catch (IllegalParameterException e) {
+            System.err.println(e.getFaultInfo().getMessage());
+        }
     }
 
     private void deleteBook(Scanner in) {
         long id = enterBookId(in);
-        QueryStatus st = bookService.getBooksWebServicePort().deleteBook(id);
-        System.out.println("Delete book - " + st);
-        getBooks();
+
+        try {
+            QueryStatus st = bookService.getBooksWebServicePort().deleteBook(id);
+            System.out.println("Delete book - " + st);
+            getBooks();
+        } catch (IllegalParameterException e) {
+            System.err.println(e.getFaultInfo().getMessage());
+        }
     }
 
     private void getBooks() {
@@ -248,9 +258,14 @@ public class WebClient {
         return in.nextLine();
     }
 
-    private Language enterLanguage(Scanner in) {
-        System.out.println("Enter language: RUSSIAN or ENGLISH");
-        return Language.fromValue(in.nextLine());
+    private String enterLanguage(Scanner in) {
+        System.out.println("Enter language");
+        return in.nextLine();
+    }
+
+    private String enterNumber(Scanner in) {
+        System.out.println("Enter number");
+        return in.nextLine();
     }
 
     private int enterInt(Scanner in, String text) {

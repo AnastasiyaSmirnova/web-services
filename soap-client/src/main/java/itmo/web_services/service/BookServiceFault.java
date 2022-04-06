@@ -7,16 +7,16 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for deleteBook complex type.
+ * <p>Java class for bookServiceFault complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="deleteBook">
+ * &lt;complexType name="bookServiceFault">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
+ *         &lt;element name="message" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -26,35 +26,35 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "deleteBook", propOrder = {
-    "id"
+@XmlType(name = "bookServiceFault", propOrder = {
+    "message"
 })
-public class DeleteBook {
+public class BookServiceFault {
 
-    protected Long id;
+    protected String message;
 
     /**
-     * Gets the value of the id property.
+     * Gets the value of the message property.
      * 
      * @return
      *     possible object is
-     *     {@link Long }
+     *     {@link String }
      *     
      */
-    public Long getId() {
-        return id;
+    public String getMessage() {
+        return message;
     }
 
     /**
-     * Sets the value of the id property.
+     * Sets the value of the message property.
      * 
      * @param value
      *     allowed object is
-     *     {@link Long }
+     *     {@link String }
      *     
      */
-    public void setId(Long value) {
-        this.id = value;
+    public void setMessage(String value) {
+        this.message = value;
     }
 
 }

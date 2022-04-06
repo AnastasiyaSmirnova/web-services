@@ -4,7 +4,6 @@ package itmo.web_services.service;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 
 
@@ -18,12 +17,12 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}long"/>
- *         &lt;element name="title" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="author" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="publishing_house" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="language" type="{http://service.web_services.itmo/}language"/>
- *         &lt;element name="pages" type="{http://www.w3.org/2001/XMLSchema}int"/>
+ *         &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
+ *         &lt;element name="title" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="author" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="publishing_house" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="language" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="pages" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -43,31 +42,35 @@ import javax.xml.bind.annotation.XmlType;
 })
 public class UpdateBook {
 
-    protected long id;
-    @XmlElement(required = true)
+    protected Long id;
     protected String title;
-    @XmlElement(required = true)
     protected String author;
-    @XmlElement(name = "publishing_house", required = true)
+    @XmlElement(name = "publishing_house")
     protected String publishingHouse;
-    @XmlElement(required = true)
-    @XmlSchemaType(name = "string")
-    protected Language language;
-    protected int pages;
+    protected String language;
+    protected String pages;
 
     /**
      * Gets the value of the id property.
      * 
+     * @return
+     *     possible object is
+     *     {@link Long }
+     *     
      */
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
     /**
      * Sets the value of the id property.
      * 
+     * @param value
+     *     allowed object is
+     *     {@link Long }
+     *     
      */
-    public void setId(long value) {
+    public void setId(Long value) {
         this.id = value;
     }
 
@@ -148,10 +151,10 @@ public class UpdateBook {
      * 
      * @return
      *     possible object is
-     *     {@link Language }
+     *     {@link String }
      *     
      */
-    public Language getLanguage() {
+    public String getLanguage() {
         return language;
     }
 
@@ -160,26 +163,34 @@ public class UpdateBook {
      * 
      * @param value
      *     allowed object is
-     *     {@link Language }
+     *     {@link String }
      *     
      */
-    public void setLanguage(Language value) {
+    public void setLanguage(String value) {
         this.language = value;
     }
 
     /**
      * Gets the value of the pages property.
      * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
      */
-    public int getPages() {
+    public String getPages() {
         return pages;
     }
 
     /**
      * Sets the value of the pages property.
      * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
      */
-    public void setPages(int value) {
+    public void setPages(String value) {
         this.pages = value;
     }
 

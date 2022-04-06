@@ -36,6 +36,7 @@ public class ObjectFactory {
     private final static QName _GetBooksResponse_QNAME = new QName("http://service.web_services.itmo/", "getBooksResponse");
     private final static QName _GetBooksByAuthorResponse_QNAME = new QName("http://service.web_services.itmo/", "getBooksByAuthorResponse");
     private final static QName _GetBooksByTitleAndAuthor_QNAME = new QName("http://service.web_services.itmo/", "getBooksByTitleAndAuthor");
+    private final static QName _IllegalParameterException_QNAME = new QName("http://service.web_services.itmo/", "IllegalParameterException");
     private final static QName _AddBook_QNAME = new QName("http://service.web_services.itmo/", "addBook");
     private final static QName _GetBooksByTitleAndAuthorResponse_QNAME = new QName("http://service.web_services.itmo/", "getBooksByTitleAndAuthorResponse");
     private final static QName _DeleteBookResponse_QNAME = new QName("http://service.web_services.itmo/", "deleteBookResponse");
@@ -192,6 +193,14 @@ public class ObjectFactory {
      */
     public AddBookResponse createAddBookResponse() {
         return new AddBookResponse();
+    }
+
+    /**
+     * Create an instance of {@link BookServiceFault }
+     * 
+     */
+    public BookServiceFault createBookServiceFault() {
+        return new BookServiceFault();
     }
 
     /**
@@ -380,6 +389,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://service.web_services.itmo/", name = "getBooksByTitleAndAuthor")
     public JAXBElement<GetBooksByTitleAndAuthor> createGetBooksByTitleAndAuthor(GetBooksByTitleAndAuthor value) {
         return new JAXBElement<GetBooksByTitleAndAuthor>(_GetBooksByTitleAndAuthor_QNAME, GetBooksByTitleAndAuthor.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link BookServiceFault }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service.web_services.itmo/", name = "IllegalParameterException")
+    public JAXBElement<BookServiceFault> createIllegalParameterException(BookServiceFault value) {
+        return new JAXBElement<BookServiceFault>(_IllegalParameterException_QNAME, BookServiceFault.class, null, value);
     }
 
     /**

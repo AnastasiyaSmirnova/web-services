@@ -9,9 +9,9 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Java class for book complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
  * &lt;complexType name="book">
  *   &lt;complexContent>
@@ -28,17 +28,15 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "book", propOrder = {
-    "author",
-    "id",
-    "language",
-    "pages",
-    "publishingHouse",
-    "title"
+        "author",
+        "id",
+        "language",
+        "pages",
+        "publishingHouse",
+        "title"
 })
 public class Book {
 
@@ -52,11 +50,9 @@ public class Book {
 
     /**
      * Gets the value of the author property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getAuthor() {
         return author;
@@ -64,11 +60,9 @@ public class Book {
 
     /**
      * Sets the value of the author property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setAuthor(String value) {
         this.author = value;
@@ -76,7 +70,6 @@ public class Book {
 
     /**
      * Gets the value of the id property.
-     * 
      */
     public long getId() {
         return id;
@@ -84,7 +77,6 @@ public class Book {
 
     /**
      * Sets the value of the id property.
-     * 
      */
     public void setId(long value) {
         this.id = value;
@@ -92,11 +84,9 @@ public class Book {
 
     /**
      * Gets the value of the language property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Language }
-     *     
+     *
+     * @return possible object is
+     * {@link Language }
      */
     public Language getLanguage() {
         return language;
@@ -104,11 +94,9 @@ public class Book {
 
     /**
      * Sets the value of the language property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Language }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link Language }
      */
     public void setLanguage(Language value) {
         this.language = value;
@@ -116,7 +104,6 @@ public class Book {
 
     /**
      * Gets the value of the pages property.
-     * 
      */
     public int getPages() {
         return pages;
@@ -124,7 +111,6 @@ public class Book {
 
     /**
      * Sets the value of the pages property.
-     * 
      */
     public void setPages(int value) {
         this.pages = value;
@@ -132,11 +118,9 @@ public class Book {
 
     /**
      * Gets the value of the publishingHouse property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getPublishingHouse() {
         return publishingHouse;
@@ -144,11 +128,9 @@ public class Book {
 
     /**
      * Sets the value of the publishingHouse property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setPublishingHouse(String value) {
         this.publishingHouse = value;
@@ -156,11 +138,9 @@ public class Book {
 
     /**
      * Gets the value of the title property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getTitle() {
         return title;
@@ -168,11 +148,9 @@ public class Book {
 
     /**
      * Sets the value of the title property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setTitle(String value) {
         this.title = value;
