@@ -1,0 +1,27 @@
+plugins {
+    id 'org.jetbrains.kotlin.jvm' version '1.5.10'
+    id 'java'
+    id "org.jetbrains.kotlin.plugin.noarg" version "1.5.10"
+}
+
+group 'itmo.we_services'
+version 'books-client'
+
+repositories {
+    mavenCentral()
+    mavenCentral()
+}
+noArg {
+    annotation("itmo.web_services.model.annotation.NoArg")
+}
+
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib"
+    implementation('com.sun.jersey:jersey-json:1.19.4')
+    implementation('com.sun.jersey:jersey-client:1.19.4')
+}
+
+test {
+    useJUnitPlatform()
+}

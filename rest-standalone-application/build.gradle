@@ -1,0 +1,22 @@
+plugins {
+    id 'java'
+}
+
+group 'itmo.web-services'
+version 'books'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation("com.sun.jersey:jersey-server:1.17.1")
+    implementation("com.sun.jersey:jersey-servlet:1.17.1")
+    implementation("com.sun.jersey:jersey-grizzly2:1.17.1")
+    implementation("com.sun.jersey:jersey-json:1.17.1")
+    implementation("org.postgresql:postgresql:42.3.3")
+}
+
+test {
+    useJUnitPlatform()
+}
