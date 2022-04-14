@@ -1,5 +1,6 @@
 package itmo.web_services.service;
 
+import itmo.web_services.ImageUtils;
 import itmo.web_services.dao.BookDao;
 import itmo.web_services.exception.BookServiceFault;
 import itmo.web_services.exception.IllegalParameterException;
@@ -7,6 +8,8 @@ import itmo.web_services.model.Book;
 import itmo.web_services.model.Language;
 import itmo.web_services.model.QueryStatus;
 
+import javax.activation.DataHandler;
+import javax.activation.FileDataSource;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebService;
@@ -20,6 +23,20 @@ public class BooksWebService {
 
     public BooksWebService() {
         bookDao = new BookDao();
+    }
+
+    // one way to send image to client - just encode to string
+    @WebMethod(operationName = "getImageAsString")
+    public String getImageAsString() {
+        String path = "book.jpg";
+        return ImageUtils.encodeToString(path);
+    }
+
+    // another way to send image to client, use attachment
+    @WebMethod(operationName = "getImageAsAttachment")
+    public DataHandler getImageAsAttachment() {
+        String path = "book_2.jpg";
+        return (new DataHandler(new FileDataSource(path)));
     }
 
     @WebMethod(operationName = "addBook")

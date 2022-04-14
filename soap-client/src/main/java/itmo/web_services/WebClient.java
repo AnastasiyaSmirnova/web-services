@@ -2,7 +2,13 @@ package itmo.web_services;
 
 
 import itmo.web_services.service.*;
+import sun.misc.BASE64Decoder;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -47,6 +53,8 @@ public class WebClient {
                 "\n11 - add new book" +
                 "\n12 - update book " +
                 "\n13 - delete book" +
+                "\n14 - get book as string" +
+                "\n15 - get book as attachment" +
                 "\n0 - exit");
 
         while ((next = Integer.parseInt(in.nextLine())) > 0) {
@@ -103,6 +111,14 @@ public class WebClient {
                     deleteBook(in);
                     break;
                 }
+                case 14: {
+                    getBookAsString();
+                    break;
+                }
+                case 15: {
+                    getBookAsAttachment();
+                    break;
+                }
                 default: {
                     System.out.println("unknown action");
                 }
@@ -111,6 +127,32 @@ public class WebClient {
         in.close();
     }
 
+    private void getBookAsString() {
+        try {
+            String imageString = bookService.getBooksWebServicePort().getImageAsString();
+            BASE64Decoder decoder = new BASE64Decoder();
+            byte[] decodeBytes = decoder.decodeBufferToByteBuffer(imageString).array();
+            saveImage("image_as_string.jpg", decodeBytes);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void getBookAsAttachment() {
+        try {
+            byte[] imageBytes = bookService.getBooksWebServicePort().getImageAsAttachment();
+            saveImage("image_as_attachment.jpg", imageBytes);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void saveImage(String path, byte[] bytes) throws IOException {
+        ByteArrayInputStream is = new ByteArrayInputStream(bytes);
+        BufferedImage bufferedImage = ImageIO.read(is);
+        ImageIO.write(bufferedImage, "JPG", new File(path));
+        System.out.println("Image created");
+    }
 
     private void addBook(Scanner in) {
         String title = enterTitle(in);

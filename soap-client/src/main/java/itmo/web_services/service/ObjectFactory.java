@@ -33,11 +33,13 @@ public class ObjectFactory {
     private final static QName _GetBooksByAuthorAndMinPagesResponse_QNAME = new QName("http://service.web_services.itmo/", "getBooksByAuthorAndMinPagesResponse");
     private final static QName _GetBooksByAuthorAndMinPages_QNAME = new QName("http://service.web_services.itmo/", "getBooksByAuthorAndMinPages");
     private final static QName _GetBooksByAuthorAndPublishingHouseResponse_QNAME = new QName("http://service.web_services.itmo/", "getBooksByAuthorAndPublishingHouseResponse");
+    private final static QName _GetImageAsString_QNAME = new QName("http://service.web_services.itmo/", "getImageAsString");
     private final static QName _GetBooksResponse_QNAME = new QName("http://service.web_services.itmo/", "getBooksResponse");
     private final static QName _GetBooksByAuthorResponse_QNAME = new QName("http://service.web_services.itmo/", "getBooksByAuthorResponse");
     private final static QName _GetBooksByTitleAndAuthor_QNAME = new QName("http://service.web_services.itmo/", "getBooksByTitleAndAuthor");
     private final static QName _IllegalParameterException_QNAME = new QName("http://service.web_services.itmo/", "IllegalParameterException");
     private final static QName _AddBook_QNAME = new QName("http://service.web_services.itmo/", "addBook");
+    private final static QName _GetImageAsAttachment_QNAME = new QName("http://service.web_services.itmo/", "getImageAsAttachment");
     private final static QName _GetBooksByTitleAndAuthorResponse_QNAME = new QName("http://service.web_services.itmo/", "getBooksByTitleAndAuthorResponse");
     private final static QName _DeleteBookResponse_QNAME = new QName("http://service.web_services.itmo/", "deleteBookResponse");
     private final static QName _GetBooksByAuthorAndPublishingHouse_QNAME = new QName("http://service.web_services.itmo/", "getBooksByAuthorAndPublishingHouse");
@@ -48,15 +50,25 @@ public class ObjectFactory {
     private final static QName _GetBooksByAuthorAndMaxPagesResponse_QNAME = new QName("http://service.web_services.itmo/", "getBooksByAuthorAndMaxPagesResponse");
     private final static QName _UpdateBook_QNAME = new QName("http://service.web_services.itmo/", "updateBook");
     private final static QName _GetBooks_QNAME = new QName("http://service.web_services.itmo/", "getBooks");
+    private final static QName _GetImageAsStringResponse_QNAME = new QName("http://service.web_services.itmo/", "getImageAsStringResponse");
     private final static QName _GetBooksByAuthorAndMaxPages_QNAME = new QName("http://service.web_services.itmo/", "getBooksByAuthorAndMaxPages");
     private final static QName _GetBooksByAuthor_QNAME = new QName("http://service.web_services.itmo/", "getBooksByAuthor");
     private final static QName _GetBooksByPagesRangeResponse_QNAME = new QName("http://service.web_services.itmo/", "getBooksByPagesRangeResponse");
+    private final static QName _GetImageAsAttachmentResponse_QNAME = new QName("http://service.web_services.itmo/", "getImageAsAttachmentResponse");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: itmo.web_services.service
      * 
      */
     public ObjectFactory() {
+    }
+
+    /**
+     * Create an instance of {@link GetImageAsStringResponse }
+     * 
+     */
+    public GetImageAsStringResponse createGetImageAsStringResponse() {
+        return new GetImageAsStringResponse();
     }
 
     /**
@@ -89,6 +101,14 @@ public class ObjectFactory {
      */
     public GetBooksByPagesRangeResponse createGetBooksByPagesRangeResponse() {
         return new GetBooksByPagesRangeResponse();
+    }
+
+    /**
+     * Create an instance of {@link GetImageAsAttachmentResponse }
+     * 
+     */
+    public GetImageAsAttachmentResponse createGetImageAsAttachmentResponse() {
+        return new GetImageAsAttachmentResponse();
     }
 
     /**
@@ -148,6 +168,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link GetImageAsAttachment }
+     * 
+     */
+    public GetImageAsAttachment createGetImageAsAttachment() {
+        return new GetImageAsAttachment();
+    }
+
+    /**
      * Create an instance of {@link GetBooksByTitleResponse }
      * 
      */
@@ -169,6 +197,14 @@ public class ObjectFactory {
      */
     public GetBooksByAuthorAndPublishingHouseResponse createGetBooksByAuthorAndPublishingHouseResponse() {
         return new GetBooksByAuthorAndPublishingHouseResponse();
+    }
+
+    /**
+     * Create an instance of {@link GetImageAsString }
+     * 
+     */
+    public GetImageAsString createGetImageAsString() {
+        return new GetImageAsString();
     }
 
     /**
@@ -365,6 +401,15 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetImageAsString }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service.web_services.itmo/", name = "getImageAsString")
+    public JAXBElement<GetImageAsString> createGetImageAsString(GetImageAsString value) {
+        return new JAXBElement<GetImageAsString>(_GetImageAsString_QNAME, GetImageAsString.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link GetBooksResponse }{@code >}}
      * 
      */
@@ -407,6 +452,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://service.web_services.itmo/", name = "addBook")
     public JAXBElement<AddBook> createAddBook(AddBook value) {
         return new JAXBElement<AddBook>(_AddBook_QNAME, AddBook.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetImageAsAttachment }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service.web_services.itmo/", name = "getImageAsAttachment")
+    public JAXBElement<GetImageAsAttachment> createGetImageAsAttachment(GetImageAsAttachment value) {
+        return new JAXBElement<GetImageAsAttachment>(_GetImageAsAttachment_QNAME, GetImageAsAttachment.class, null, value);
     }
 
     /**
@@ -500,6 +554,15 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetImageAsStringResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service.web_services.itmo/", name = "getImageAsStringResponse")
+    public JAXBElement<GetImageAsStringResponse> createGetImageAsStringResponse(GetImageAsStringResponse value) {
+        return new JAXBElement<GetImageAsStringResponse>(_GetImageAsStringResponse_QNAME, GetImageAsStringResponse.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link GetBooksByAuthorAndMaxPages }{@code >}}
      * 
      */
@@ -524,6 +587,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://service.web_services.itmo/", name = "getBooksByPagesRangeResponse")
     public JAXBElement<GetBooksByPagesRangeResponse> createGetBooksByPagesRangeResponse(GetBooksByPagesRangeResponse value) {
         return new JAXBElement<GetBooksByPagesRangeResponse>(_GetBooksByPagesRangeResponse_QNAME, GetBooksByPagesRangeResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetImageAsAttachmentResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://service.web_services.itmo/", name = "getImageAsAttachmentResponse")
+    public JAXBElement<GetImageAsAttachmentResponse> createGetImageAsAttachmentResponse(GetImageAsAttachmentResponse value) {
+        return new JAXBElement<GetImageAsAttachmentResponse>(_GetImageAsAttachmentResponse_QNAME, GetImageAsAttachmentResponse.class, null, value);
     }
 
 }

@@ -20,7 +20,7 @@ public class BookDao {
     public Book getBookById(long id) throws SQLException {
         return executor.execQuery(
                 "select * from books where id =" + id,
-                result -> {
+                result -> {;
                     result.next();
                     return generateBook(result);
                 }
