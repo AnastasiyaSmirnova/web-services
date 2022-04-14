@@ -100,3 +100,23 @@ BookServiceFault*](https://github.com/AnastasiyaSmirnova/web-services/blob/labor
     * BookServiceFault
   * StandaloneApplication ( main() )
   * ConnectionUtil (connection to DB)
+
+    Использовались 2 изображения
+
+---
+##### Дополнительное задание: Обработка бинарных данных.
+
+Реализованы 2 метода передачи изображений:
+
+* send image as String 
+* send image as attachment
+
+[Обновленный BookService](https://github.com/AnastasiyaSmirnova/web-services/blob/laboratory-work-3-improvements/standalone-application/src/main/java/itmo/web_services/service/BooksWebService.java)
+
+[Вспомогательный класс ImageUtils](https://github.com/AnastasiyaSmirnova/web-services/blob/laboratory-work-3-improvements/standalone-application/src/main/java/itmo/web_services/ImageUtils.java)
+
+В результате выполнения запросов клиентом были получены следующие изображения: 
+
+![Певрое прочитанное клиентом изображение](https://github.com/AnastasiyaSmirnova/web-services/blob/laboratory-work-3-improvements/soap-client/image_as_string.jpg)
+
+![Второе прочитанное клиентом изображение](https://github.com/AnastasiyaSmirnova/web-services/blob/laboratory-work-3-improvements/soap-client/image_as_attachment.jpg)
