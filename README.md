@@ -117,4 +117,6 @@ BookServiceFault*](https://github.com/AnastasiyaSmirnova/web-services/blob/labor
 
 В результате выполнения запросов клиентом были получены следующие изображения: 
 
-![Певрое прочитанное клиентом изображение](https://github.com/AnastasiyaSmirnova/web-services/blob/laboratory-work-3-improvements/soap-client/image_as_string.jpg) | ![Второе прочитанное клиентом изображение](https://github.com/AnastasiyaSmirnova/web-services/blob/laboratory-work-3-improvements/soap-client/image_as_attachment.jpg)
+[Певрое прочитанное клиентом изображение](https://github.com/AnastasiyaSmirnova/web-services/blob/laboratory-work-3-improvements/soap-client/image_as_string.jpg)
+
+[Второе прочитанное клиентом изображение](https://github.com/AnastasiyaSmirnova/web-services/blob/laboratory-work-3-improvements/soap-client/image_as_attachment.jpg)
