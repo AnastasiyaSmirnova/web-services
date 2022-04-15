@@ -1,8 +1,8 @@
-package itmo.web_services.dao;
+package itmo.webservices.dao;
 
-import itmo.web_services.dao.executor.Executor;
-import itmo.web_services.model.Book;
-import itmo.web_services.model.Language;
+import itmo.webservices.dao.executor.Executor;
+import itmo.webservices.model.Book;
+import itmo.webservices.model.Language;
 
 import java.sql.Connection;
 import java.sql.ResultSet;

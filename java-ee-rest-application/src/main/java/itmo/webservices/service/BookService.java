@@ -1,8 +1,7 @@
-package itmo.web_services.service;
+package itmo.webservices.service;
 
-
-import itmo.web_services.dao.BookDao;
-import itmo.web_services.model.Book;
+import itmo.webservices.dao.BookDao;
+import itmo.webservices.model.Book;
 
 import javax.annotation.Resource;
 import javax.enterprise.context.RequestScoped;

@@ -107,7 +107,6 @@ class RestClient(
             .print()
     }
 
-
     private fun getBooksByTitleAndAuthor() {
         println("get books by title and author\nenter title:")
         val title = readLine()
