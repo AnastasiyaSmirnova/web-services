@@ -29,10 +29,7 @@ public class BookResource {
     @GET
     @Path("byTitle")
     public List<Book> getBooksByTitle(@QueryParam("title") @XmlElement(required = true) String title) {
-        List<Book> res = bookDao.getBooksByTitle(title);
-        System.out.println(title);
-        System.out.println(res);
-        return res;
+        return bookDao.getBooksByTitle(title);
     }
 
     @GET
