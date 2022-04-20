@@ -120,3 +120,24 @@ BookServiceFault*](https://github.com/AnastasiyaSmirnova/web-services/blob/labor
 [Певрое прочитанное клиентом изображение](https://github.com/AnastasiyaSmirnova/web-services/blob/laboratory-work-3-improvements/soap-client/image_as_string.jpg)
 
 [Второе прочитанное клиентом изображение](https://github.com/AnastasiyaSmirnova/web-services/blob/laboratory-work-3-improvements/soap-client/image_as_attachment.jpg)
+
+
+---
+---
+
+### Лабораторная работа 4
+
+*Задание*
+
+Необходимо выполнить задание из первой работы, но с использованием
+REST-сервиса. Таблицу базы данных, а также код для работы с ней можно оставить
+без изменений.
+
+[*Исходный код*](https://github.com/AnastasiyaSmirnova/web-services/releases/tag/laboratory-work-4)
+
+* standalone REST application
+    * [*server*](https://github.com/AnastasiyaSmirnova/web-services/tree/laboratory-work-4/rest-standalone-application)
+    * [*client*](https://github.com/AnastasiyaSmirnova/web-services/blob/laboratory-work-4/rest-client/src/main/kotlin/itmo/web_services/impl/JavaEERestClient.kt)
+* java EE REST application
+  * [*server*](https://github.com/AnastasiyaSmirnova/web-services/tree/laboratory-work-4/java-ee-rest-application)
+  * [*client*](https://github.com/AnastasiyaSmirnova/web-services/blob/laboratory-work-4/rest-client/src/main/kotlin/itmo/web_services/impl/JavaEERestClient.kt)
