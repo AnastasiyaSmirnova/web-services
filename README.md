@@ -169,6 +169,9 @@ async.xml*](https://github.com/AnastasiyaSmirnova/web-services/blob/9b651b94ff20
     * [*server*](https://github.com/AnastasiyaSmirnova/web-services/tree/laboratory-work-4/java-ee-rest-application)
     * [*
       client*](https://github.com/AnastasiyaSmirnova/web-services/blob/laboratory-work-4/rest-client/src/main/kotlin/itmo/web_services/impl/JavaEERestClient.kt)
+    
+---
+---
 
 ### Лабораторная работа 5
 
@@ -181,6 +184,9 @@ async.xml*](https://github.com/AnastasiyaSmirnova/web-services/blob/9b651b94ff20
 
 - [Измененные запросы в клиентской части](https://github.com/AnastasiyaSmirnova/web-services/blob/laboratory-work-5/rest-client/src/main/kotlin/itmo/web_services/impl/JavaEERestClient.kt)
 - [Измененные запросы в серверной части](https://github.com/AnastasiyaSmirnova/web-services/blob/laboratory-work-5/java-ee-rest-application/src/main/java/itmo/webservices/service/BookService.java)
+
+---
+---
 
 ### Лабораторная работа 6
 
