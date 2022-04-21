@@ -88,39 +88,63 @@ IllegalParameterException*](https://github.com/AnastasiyaSmirnova/web-services/b
 BookServiceFault*](https://github.com/AnastasiyaSmirnova/web-services/blob/laboratory-work-3/standalone-application/src/main/java/itmo/web_services/exception/BookServiceFault.java)
 
 *Измененная структура проекта:*
-* model
-  * Book
-  * dao
-     * *Executor*
-     * BookDao
-  * service
-     * BookService
-  * **exception**
-    * IllegalParameterException
-    * BookServiceFault
-  * StandaloneApplication ( main() )
-  * ConnectionUtil (connection to DB)
 
-    Использовались 2 изображения
+* model
+    * Book
+    * dao
+        * *Executor*
+        * BookDao
+    * service
+        * BookService
+    * **exception**
+        * IllegalParameterException
+        * BookServiceFault
+    * StandaloneApplication ( main() )
+    * ConnectionUtil (connection to DB)
+
+      Использовались 2 изображения
 
 ---
-##### Дополнительное задание: Обработка бинарных данных.
+
+##### Дополнительное задание I: Обработка бинарных данных.
 
 Реализованы 2 метода передачи изображений:
 
-* send image as String 
+* send image as String
 * send image as attachment
 
 [Обновленный BookService](https://github.com/AnastasiyaSmirnova/web-services/blob/laboratory-work-3-improvements/standalone-application/src/main/java/itmo/web_services/service/BooksWebService.java)
 
 [Вспомогательный класс ImageUtils](https://github.com/AnastasiyaSmirnova/web-services/blob/laboratory-work-3-improvements/standalone-application/src/main/java/itmo/web_services/ImageUtils.java)
 
-В результате выполнения запросов клиентом были получены следующие изображения: 
+В результате выполнения запросов клиентом были получены следующие изображения:
 
 [Певрое прочитанное клиентом изображение](https://github.com/AnastasiyaSmirnova/web-services/blob/laboratory-work-3-improvements/soap-client/image_as_string.jpg)
 
 [Второе прочитанное клиентом изображение](https://github.com/AnastasiyaSmirnova/web-services/blob/laboratory-work-3-improvements/soap-client/image_as_attachment.jpg)
 
+---
+
+##### Дополнительное задание II: Обработка бинарных данных.
+
+Согласно [*докуметации*](https://cxf.apache.org/faq.html#FAQ-AreJAX-WSclientproxiesthreadsafe?) JAX-WS клиенты не являются
+потобезпасными:
+
+``` 
+Official JAX-WS answer: 
+No. According to the JAX-WS spec, 
+the client proxies are NOT thread safe. 
+To write portable code, you should treat them as non-thread safe
+and synchronize access or use a pool of instances or similar.
+```
+
+Для решения проблемы в программе используются [*ассинхронные вызовы*](https://github.com/AnastasiyaSmirnova/web-services/blob/9b651b94ff2031c19d99a27f3cc14c5ea77c6010/soap-client/src/main/java/itmo/web_services/WebClient.java#L209).
+
+Изменены параметры использования wsimport: 
+
+```wsimport http://localhost:8080/BookService?wsdl -keep -b async.xml```
+
+[*Файл async.xml*](https://github.com/AnastasiyaSmirnova/web-services/blob/9b651b94ff2031c19d99a27f3cc14c5ea77c6010/soap-client/async.xml)
 
 ---
 ---
@@ -129,15 +153,16 @@ BookServiceFault*](https://github.com/AnastasiyaSmirnova/web-services/blob/labor
 
 *Задание*
 
-Необходимо выполнить задание из первой работы, но с использованием
-REST-сервиса. Таблицу базы данных, а также код для работы с ней можно оставить
-без изменений.
+Необходимо выполнить задание из первой работы, но с использованием REST-сервиса. Таблицу базы данных, а также код для
+работы с ней можно оставить без изменений.
 
 [*Исходный код*](https://github.com/AnastasiyaSmirnova/web-services/releases/tag/laboratory-work-4)
 
 * standalone REST application
     * [*server*](https://github.com/AnastasiyaSmirnova/web-services/tree/laboratory-work-4/rest-standalone-application)
-    * [*client*](https://github.com/AnastasiyaSmirnova/web-services/blob/laboratory-work-4/rest-client/src/main/kotlin/itmo/web_services/impl/JavaEERestClient.kt)
+    * [*
+      client*](https://github.com/AnastasiyaSmirnova/web-services/blob/laboratory-work-4/rest-client/src/main/kotlin/itmo/web_services/impl/JavaEERestClient.kt)
 * java EE REST application
-  * [*server*](https://github.com/AnastasiyaSmirnova/web-services/tree/laboratory-work-4/java-ee-rest-application)
-  * [*client*](https://github.com/AnastasiyaSmirnova/web-services/blob/laboratory-work-4/rest-client/src/main/kotlin/itmo/web_services/impl/JavaEERestClient.kt)
+    * [*server*](https://github.com/AnastasiyaSmirnova/web-services/tree/laboratory-work-4/java-ee-rest-application)
+    * [*
+      client*](https://github.com/AnastasiyaSmirnova/web-services/blob/laboratory-work-4/rest-client/src/main/kotlin/itmo/web_services/impl/JavaEERestClient.kt)
