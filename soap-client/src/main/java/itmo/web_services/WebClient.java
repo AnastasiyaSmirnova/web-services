@@ -5,6 +5,7 @@ import itmo.web_services.service.*;
 import sun.misc.BASE64Decoder;
 
 import javax.imageio.ImageIO;
+import javax.xml.ws.Response;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.File;
@@ -15,6 +16,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
+import java.util.concurrent.ExecutionException;
 
 public class WebClient {
     private final BookService bookService;
@@ -204,12 +206,34 @@ public class WebClient {
         authors.clear();
         pubHouses.clear();
 
-        List<Book> books = bookService.getBooksWebServicePort().getBooks();
-        for (Book book : books) {
-            titles.add(book.getTitle());
-            authors.add(book.getAuthor());
-            pubHouses.add(book.getPublishingHouse());
-            System.out.println(book);
+        /*
+         * An asynchronous invocation of a web service sends a request to the service endpoint
+         * and then immediately returns control to the client program without waiting for the response to return from the service.
+         * JAX-WS asynchronous web service clients consume web services using either the callback approach or the polling approach.
+         * Using a polling model, a client can issue a request and receive a response object that is polled to determine
+         * if the server has responded. When the server responds, the actual response is retrieved.
+         * Using the callback model, the client provides a callback handler to accept and process the inbound response object.
+         * The handleResponse() method of the handler is called when the result is available.
+         * Both the polling and callback models enable the client to focus on continuing to process work without waiting for a response to return,
+         * while providing for a more dynamic and efficient model to invoke web services.
+         *
+         * from: https://www.ibm.com/docs/en/was-nd/9.0.5?topic=clients-invoking-jax-ws-web-services-asynchronously
+         */
+        try {
+            // send async request (and immediately get control)
+            Response<GetBooksResponse> response = bookService.getBooksWebServicePort().getBooksAsync();
+            System.out.println("async response send");
+
+            // get response
+            List<Book> books = response.get().getReturn();
+            for (Book book : books) {
+                titles.add(book.getTitle());
+                authors.add(book.getAuthor());
+                pubHouses.add(book.getPublishingHouse());
+                System.out.println(book);
+            }
+        } catch (InterruptedException | ExecutionException e) {
+            e.printStackTrace();
         }
     }
 

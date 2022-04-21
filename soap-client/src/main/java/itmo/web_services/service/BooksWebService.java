@@ -2,14 +2,17 @@
 package itmo.web_services.service;
 
 import java.util.List;
+import java.util.concurrent.Future;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebResult;
 import javax.jws.WebService;
 import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.ws.Action;
+import javax.xml.ws.AsyncHandler;
 import javax.xml.ws.FaultAction;
 import javax.xml.ws.RequestWrapper;
+import javax.xml.ws.Response;
 import javax.xml.ws.ResponseWrapper;
 
 
@@ -28,57 +31,253 @@ public interface BooksWebService {
 
     /**
      * 
+     * @param publishingHouse
+     * @param title
      * @return
-     *     returns byte[]
+     *     returns javax.xml.ws.Response<itmo.web_services.service.GetBooksByTitleAndPublishingHouseResponse>
      */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "getImageAsAttachment", targetNamespace = "http://service.web_services.itmo/", className = "itmo.web_services.service.GetImageAsAttachment")
-    @ResponseWrapper(localName = "getImageAsAttachmentResponse", targetNamespace = "http://service.web_services.itmo/", className = "itmo.web_services.service.GetImageAsAttachmentResponse")
-    @Action(input = "http://service.web_services.itmo/BooksWebService/getImageAsAttachmentRequest", output = "http://service.web_services.itmo/BooksWebService/getImageAsAttachmentResponse")
-    public byte[] getImageAsAttachment();
+    @WebMethod(operationName = "getBooksByTitleAndPublishingHouse")
+    @RequestWrapper(localName = "getBooksByTitleAndPublishingHouse", targetNamespace = "http://service.web_services.itmo/", className = "itmo.web_services.service.GetBooksByTitleAndPublishingHouse")
+    @ResponseWrapper(localName = "getBooksByTitleAndPublishingHouseResponse", targetNamespace = "http://service.web_services.itmo/", className = "itmo.web_services.service.GetBooksByTitleAndPublishingHouseResponse")
+    public Response<GetBooksByTitleAndPublishingHouseResponse> getBooksByTitleAndPublishingHouseAsync(
+        @WebParam(name = "title", targetNamespace = "")
+        String title,
+        @WebParam(name = "publishingHouse", targetNamespace = "")
+        String publishingHouse);
 
     /**
      * 
+     * @param publishingHouse
+     * @param title
+     * @param asyncHandler
+     * @return
+     *     returns java.util.concurrent.Future<? extends java.lang.Object>
+     */
+    @WebMethod(operationName = "getBooksByTitleAndPublishingHouse")
+    @RequestWrapper(localName = "getBooksByTitleAndPublishingHouse", targetNamespace = "http://service.web_services.itmo/", className = "itmo.web_services.service.GetBooksByTitleAndPublishingHouse")
+    @ResponseWrapper(localName = "getBooksByTitleAndPublishingHouseResponse", targetNamespace = "http://service.web_services.itmo/", className = "itmo.web_services.service.GetBooksByTitleAndPublishingHouseResponse")
+    public Future<?> getBooksByTitleAndPublishingHouseAsync(
+        @WebParam(name = "title", targetNamespace = "")
+        String title,
+        @WebParam(name = "publishingHouse", targetNamespace = "")
+        String publishingHouse,
+        @WebParam(name = "asyncHandler", targetNamespace = "")
+        AsyncHandler<GetBooksByTitleAndPublishingHouseResponse> asyncHandler);
+
+    /**
+     * 
+     * @param publishingHouse
      * @param title
      * @return
      *     returns java.util.List<itmo.web_services.service.Book>
      */
     @WebMethod
     @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "getBooksByTitle", targetNamespace = "http://service.web_services.itmo/", className = "itmo.web_services.service.GetBooksByTitle")
-    @ResponseWrapper(localName = "getBooksByTitleResponse", targetNamespace = "http://service.web_services.itmo/", className = "itmo.web_services.service.GetBooksByTitleResponse")
-    @Action(input = "http://service.web_services.itmo/BooksWebService/getBooksByTitleRequest", output = "http://service.web_services.itmo/BooksWebService/getBooksByTitleResponse")
-    public List<Book> getBooksByTitle(
+    @RequestWrapper(localName = "getBooksByTitleAndPublishingHouse", targetNamespace = "http://service.web_services.itmo/", className = "itmo.web_services.service.GetBooksByTitleAndPublishingHouse")
+    @ResponseWrapper(localName = "getBooksByTitleAndPublishingHouseResponse", targetNamespace = "http://service.web_services.itmo/", className = "itmo.web_services.service.GetBooksByTitleAndPublishingHouseResponse")
+    @Action(input = "http://service.web_services.itmo/BooksWebService/getBooksByTitleAndPublishingHouseRequest", output = "http://service.web_services.itmo/BooksWebService/getBooksByTitleAndPublishingHouseResponse")
+    public List<Book> getBooksByTitleAndPublishingHouse(
         @WebParam(name = "title", targetNamespace = "")
-        String title);
+        String title,
+        @WebParam(name = "publishingHouse", targetNamespace = "")
+        String publishingHouse);
 
     /**
      * 
      * @param author
+     * @param publishingHouse
      * @return
-     *     returns java.util.List<itmo.web_services.service.Book>
+     *     returns javax.xml.ws.Response<itmo.web_services.service.GetBooksByAuthorAndPublishingHouseResponse>
      */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "getBooksByAuthor", targetNamespace = "http://service.web_services.itmo/", className = "itmo.web_services.service.GetBooksByAuthor")
-    @ResponseWrapper(localName = "getBooksByAuthorResponse", targetNamespace = "http://service.web_services.itmo/", className = "itmo.web_services.service.GetBooksByAuthorResponse")
-    @Action(input = "http://service.web_services.itmo/BooksWebService/getBooksByAuthorRequest", output = "http://service.web_services.itmo/BooksWebService/getBooksByAuthorResponse")
-    public List<Book> getBooksByAuthor(
+    @WebMethod(operationName = "getBooksByAuthorAndPublishingHouse")
+    @RequestWrapper(localName = "getBooksByAuthorAndPublishingHouse", targetNamespace = "http://service.web_services.itmo/", className = "itmo.web_services.service.GetBooksByAuthorAndPublishingHouse")
+    @ResponseWrapper(localName = "getBooksByAuthorAndPublishingHouseResponse", targetNamespace = "http://service.web_services.itmo/", className = "itmo.web_services.service.GetBooksByAuthorAndPublishingHouseResponse")
+    public Response<GetBooksByAuthorAndPublishingHouseResponse> getBooksByAuthorAndPublishingHouseAsync(
         @WebParam(name = "author", targetNamespace = "")
-        String author);
+        String author,
+        @WebParam(name = "publishingHouse", targetNamespace = "")
+        String publishingHouse);
 
     /**
      * 
+     * @param author
+     * @param publishingHouse
+     * @param asyncHandler
+     * @return
+     *     returns java.util.concurrent.Future<? extends java.lang.Object>
+     */
+    @WebMethod(operationName = "getBooksByAuthorAndPublishingHouse")
+    @RequestWrapper(localName = "getBooksByAuthorAndPublishingHouse", targetNamespace = "http://service.web_services.itmo/", className = "itmo.web_services.service.GetBooksByAuthorAndPublishingHouse")
+    @ResponseWrapper(localName = "getBooksByAuthorAndPublishingHouseResponse", targetNamespace = "http://service.web_services.itmo/", className = "itmo.web_services.service.GetBooksByAuthorAndPublishingHouseResponse")
+    public Future<?> getBooksByAuthorAndPublishingHouseAsync(
+        @WebParam(name = "author", targetNamespace = "")
+        String author,
+        @WebParam(name = "publishingHouse", targetNamespace = "")
+        String publishingHouse,
+        @WebParam(name = "asyncHandler", targetNamespace = "")
+        AsyncHandler<GetBooksByAuthorAndPublishingHouseResponse> asyncHandler);
+
+    /**
+     * 
+     * @param author
+     * @param publishingHouse
      * @return
      *     returns java.util.List<itmo.web_services.service.Book>
      */
     @WebMethod
     @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "getBooks", targetNamespace = "http://service.web_services.itmo/", className = "itmo.web_services.service.GetBooks")
-    @ResponseWrapper(localName = "getBooksResponse", targetNamespace = "http://service.web_services.itmo/", className = "itmo.web_services.service.GetBooksResponse")
-    @Action(input = "http://service.web_services.itmo/BooksWebService/getBooksRequest", output = "http://service.web_services.itmo/BooksWebService/getBooksResponse")
-    public List<Book> getBooks();
+    @RequestWrapper(localName = "getBooksByAuthorAndPublishingHouse", targetNamespace = "http://service.web_services.itmo/", className = "itmo.web_services.service.GetBooksByAuthorAndPublishingHouse")
+    @ResponseWrapper(localName = "getBooksByAuthorAndPublishingHouseResponse", targetNamespace = "http://service.web_services.itmo/", className = "itmo.web_services.service.GetBooksByAuthorAndPublishingHouseResponse")
+    @Action(input = "http://service.web_services.itmo/BooksWebService/getBooksByAuthorAndPublishingHouseRequest", output = "http://service.web_services.itmo/BooksWebService/getBooksByAuthorAndPublishingHouseResponse")
+    public List<Book> getBooksByAuthorAndPublishingHouse(
+        @WebParam(name = "author", targetNamespace = "")
+        String author,
+        @WebParam(name = "publishingHouse", targetNamespace = "")
+        String publishingHouse);
+
+    /**
+     * 
+     * @param pages
+     * @param author
+     * @param publishingHouse
+     * @param language
+     * @param title
+     * @return
+     *     returns javax.xml.ws.Response<itmo.web_services.service.AddBookResponse>
+     */
+    @WebMethod(operationName = "addBook")
+    @RequestWrapper(localName = "addBook", targetNamespace = "http://service.web_services.itmo/", className = "itmo.web_services.service.AddBook")
+    @ResponseWrapper(localName = "addBookResponse", targetNamespace = "http://service.web_services.itmo/", className = "itmo.web_services.service.AddBookResponse")
+    public Response<AddBookResponse> addBookAsync(
+        @WebParam(name = "title", targetNamespace = "")
+        String title,
+        @WebParam(name = "author", targetNamespace = "")
+        String author,
+        @WebParam(name = "publishing_house", targetNamespace = "")
+        String publishingHouse,
+        @WebParam(name = "language", targetNamespace = "")
+        String language,
+        @WebParam(name = "pages", targetNamespace = "")
+        String pages);
+
+    /**
+     * 
+     * @param pages
+     * @param author
+     * @param publishingHouse
+     * @param language
+     * @param title
+     * @param asyncHandler
+     * @return
+     *     returns java.util.concurrent.Future<? extends java.lang.Object>
+     */
+    @WebMethod(operationName = "addBook")
+    @RequestWrapper(localName = "addBook", targetNamespace = "http://service.web_services.itmo/", className = "itmo.web_services.service.AddBook")
+    @ResponseWrapper(localName = "addBookResponse", targetNamespace = "http://service.web_services.itmo/", className = "itmo.web_services.service.AddBookResponse")
+    public Future<?> addBookAsync(
+        @WebParam(name = "title", targetNamespace = "")
+        String title,
+        @WebParam(name = "author", targetNamespace = "")
+        String author,
+        @WebParam(name = "publishing_house", targetNamespace = "")
+        String publishingHouse,
+        @WebParam(name = "language", targetNamespace = "")
+        String language,
+        @WebParam(name = "pages", targetNamespace = "")
+        String pages,
+        @WebParam(name = "asyncHandler", targetNamespace = "")
+        AsyncHandler<AddBookResponse> asyncHandler);
+
+    /**
+     * 
+     * @param pages
+     * @param author
+     * @param publishingHouse
+     * @param language
+     * @param title
+     * @return
+     *     returns long
+     * @throws IllegalParameterException
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "addBook", targetNamespace = "http://service.web_services.itmo/", className = "itmo.web_services.service.AddBook")
+    @ResponseWrapper(localName = "addBookResponse", targetNamespace = "http://service.web_services.itmo/", className = "itmo.web_services.service.AddBookResponse")
+    @Action(input = "http://service.web_services.itmo/BooksWebService/addBookRequest", output = "http://service.web_services.itmo/BooksWebService/addBookResponse", fault = {
+        @FaultAction(className = IllegalParameterException.class, value = "http://service.web_services.itmo/BooksWebService/addBook/Fault/IllegalParameterException")
+    })
+    public long addBook(
+        @WebParam(name = "title", targetNamespace = "")
+        String title,
+        @WebParam(name = "author", targetNamespace = "")
+        String author,
+        @WebParam(name = "publishing_house", targetNamespace = "")
+        String publishingHouse,
+        @WebParam(name = "language", targetNamespace = "")
+        String language,
+        @WebParam(name = "pages", targetNamespace = "")
+        String pages)
+        throws IllegalParameterException
+    ;
+
+    /**
+     * 
+     * @param pages
+     * @param author
+     * @param publishingHouse
+     * @param language
+     * @param id
+     * @param title
+     * @return
+     *     returns javax.xml.ws.Response<itmo.web_services.service.UpdateBookResponse>
+     */
+    @WebMethod(operationName = "updateBook")
+    @RequestWrapper(localName = "updateBook", targetNamespace = "http://service.web_services.itmo/", className = "itmo.web_services.service.UpdateBook")
+    @ResponseWrapper(localName = "updateBookResponse", targetNamespace = "http://service.web_services.itmo/", className = "itmo.web_services.service.UpdateBookResponse")
+    public Response<UpdateBookResponse> updateBookAsync(
+        @WebParam(name = "id", targetNamespace = "")
+        Long id,
+        @WebParam(name = "title", targetNamespace = "")
+        String title,
+        @WebParam(name = "author", targetNamespace = "")
+        String author,
+        @WebParam(name = "publishing_house", targetNamespace = "")
+        String publishingHouse,
+        @WebParam(name = "language", targetNamespace = "")
+        String language,
+        @WebParam(name = "pages", targetNamespace = "")
+        String pages);
+
+    /**
+     * 
+     * @param pages
+     * @param author
+     * @param publishingHouse
+     * @param language
+     * @param id
+     * @param title
+     * @param asyncHandler
+     * @return
+     *     returns java.util.concurrent.Future<? extends java.lang.Object>
+     */
+    @WebMethod(operationName = "updateBook")
+    @RequestWrapper(localName = "updateBook", targetNamespace = "http://service.web_services.itmo/", className = "itmo.web_services.service.UpdateBook")
+    @ResponseWrapper(localName = "updateBookResponse", targetNamespace = "http://service.web_services.itmo/", className = "itmo.web_services.service.UpdateBookResponse")
+    public Future<?> updateBookAsync(
+        @WebParam(name = "id", targetNamespace = "")
+        Long id,
+        @WebParam(name = "title", targetNamespace = "")
+        String title,
+        @WebParam(name = "author", targetNamespace = "")
+        String author,
+        @WebParam(name = "publishing_house", targetNamespace = "")
+        String publishingHouse,
+        @WebParam(name = "language", targetNamespace = "")
+        String language,
+        @WebParam(name = "pages", targetNamespace = "")
+        String pages,
+        @WebParam(name = "asyncHandler", targetNamespace = "")
+        AsyncHandler<UpdateBookResponse> asyncHandler);
 
     /**
      * 
@@ -117,35 +316,190 @@ public interface BooksWebService {
 
     /**
      * 
-     * @param pages
-     * @param author
-     * @param publishingHouse
-     * @param language
-     * @param title
      * @return
-     *     returns long
-     * @throws IllegalParameterException
+     *     returns javax.xml.ws.Response<itmo.web_services.service.GetImageAsStringResponse>
+     */
+    @WebMethod(operationName = "getImageAsString")
+    @RequestWrapper(localName = "getImageAsString", targetNamespace = "http://service.web_services.itmo/", className = "itmo.web_services.service.GetImageAsString")
+    @ResponseWrapper(localName = "getImageAsStringResponse", targetNamespace = "http://service.web_services.itmo/", className = "itmo.web_services.service.GetImageAsStringResponse")
+    public Response<GetImageAsStringResponse> getImageAsStringAsync();
+
+    /**
+     * 
+     * @param asyncHandler
+     * @return
+     *     returns java.util.concurrent.Future<? extends java.lang.Object>
+     */
+    @WebMethod(operationName = "getImageAsString")
+    @RequestWrapper(localName = "getImageAsString", targetNamespace = "http://service.web_services.itmo/", className = "itmo.web_services.service.GetImageAsString")
+    @ResponseWrapper(localName = "getImageAsStringResponse", targetNamespace = "http://service.web_services.itmo/", className = "itmo.web_services.service.GetImageAsStringResponse")
+    public Future<?> getImageAsStringAsync(
+        @WebParam(name = "asyncHandler", targetNamespace = "")
+        AsyncHandler<GetImageAsStringResponse> asyncHandler);
+
+    /**
+     * 
+     * @return
+     *     returns java.lang.String
      */
     @WebMethod
     @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "addBook", targetNamespace = "http://service.web_services.itmo/", className = "itmo.web_services.service.AddBook")
-    @ResponseWrapper(localName = "addBookResponse", targetNamespace = "http://service.web_services.itmo/", className = "itmo.web_services.service.AddBookResponse")
-    @Action(input = "http://service.web_services.itmo/BooksWebService/addBookRequest", output = "http://service.web_services.itmo/BooksWebService/addBookResponse", fault = {
-        @FaultAction(className = IllegalParameterException.class, value = "http://service.web_services.itmo/BooksWebService/addBook/Fault/IllegalParameterException")
-    })
-    public long addBook(
-        @WebParam(name = "title", targetNamespace = "")
-        String title,
+    @RequestWrapper(localName = "getImageAsString", targetNamespace = "http://service.web_services.itmo/", className = "itmo.web_services.service.GetImageAsString")
+    @ResponseWrapper(localName = "getImageAsStringResponse", targetNamespace = "http://service.web_services.itmo/", className = "itmo.web_services.service.GetImageAsStringResponse")
+    @Action(input = "http://service.web_services.itmo/BooksWebService/getImageAsStringRequest", output = "http://service.web_services.itmo/BooksWebService/getImageAsStringResponse")
+    public String getImageAsString();
+
+    /**
+     * 
+     * @return
+     *     returns javax.xml.ws.Response<itmo.web_services.service.GetBooksResponse>
+     */
+    @WebMethod(operationName = "getBooks")
+    @RequestWrapper(localName = "getBooks", targetNamespace = "http://service.web_services.itmo/", className = "itmo.web_services.service.GetBooks")
+    @ResponseWrapper(localName = "getBooksResponse", targetNamespace = "http://service.web_services.itmo/", className = "itmo.web_services.service.GetBooksResponse")
+    public Response<GetBooksResponse> getBooksAsync();
+
+    /**
+     * 
+     * @param asyncHandler
+     * @return
+     *     returns java.util.concurrent.Future<? extends java.lang.Object>
+     */
+    @WebMethod(operationName = "getBooks")
+    @RequestWrapper(localName = "getBooks", targetNamespace = "http://service.web_services.itmo/", className = "itmo.web_services.service.GetBooks")
+    @ResponseWrapper(localName = "getBooksResponse", targetNamespace = "http://service.web_services.itmo/", className = "itmo.web_services.service.GetBooksResponse")
+    public Future<?> getBooksAsync(
+        @WebParam(name = "asyncHandler", targetNamespace = "")
+        AsyncHandler<GetBooksResponse> asyncHandler);
+
+    /**
+     * 
+     * @return
+     *     returns java.util.List<itmo.web_services.service.Book>
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "getBooks", targetNamespace = "http://service.web_services.itmo/", className = "itmo.web_services.service.GetBooks")
+    @ResponseWrapper(localName = "getBooksResponse", targetNamespace = "http://service.web_services.itmo/", className = "itmo.web_services.service.GetBooksResponse")
+    @Action(input = "http://service.web_services.itmo/BooksWebService/getBooksRequest", output = "http://service.web_services.itmo/BooksWebService/getBooksResponse")
+    public List<Book> getBooks();
+
+    /**
+     * 
+     * @param author
+     * @return
+     *     returns javax.xml.ws.Response<itmo.web_services.service.GetBooksByAuthorResponse>
+     */
+    @WebMethod(operationName = "getBooksByAuthor")
+    @RequestWrapper(localName = "getBooksByAuthor", targetNamespace = "http://service.web_services.itmo/", className = "itmo.web_services.service.GetBooksByAuthor")
+    @ResponseWrapper(localName = "getBooksByAuthorResponse", targetNamespace = "http://service.web_services.itmo/", className = "itmo.web_services.service.GetBooksByAuthorResponse")
+    public Response<GetBooksByAuthorResponse> getBooksByAuthorAsync(
+        @WebParam(name = "author", targetNamespace = "")
+        String author);
+
+    /**
+     * 
+     * @param author
+     * @param asyncHandler
+     * @return
+     *     returns java.util.concurrent.Future<? extends java.lang.Object>
+     */
+    @WebMethod(operationName = "getBooksByAuthor")
+    @RequestWrapper(localName = "getBooksByAuthor", targetNamespace = "http://service.web_services.itmo/", className = "itmo.web_services.service.GetBooksByAuthor")
+    @ResponseWrapper(localName = "getBooksByAuthorResponse", targetNamespace = "http://service.web_services.itmo/", className = "itmo.web_services.service.GetBooksByAuthorResponse")
+    public Future<?> getBooksByAuthorAsync(
         @WebParam(name = "author", targetNamespace = "")
         String author,
-        @WebParam(name = "publishing_house", targetNamespace = "")
-        String publishingHouse,
-        @WebParam(name = "language", targetNamespace = "")
-        String language,
-        @WebParam(name = "pages", targetNamespace = "")
-        String pages)
-        throws IllegalParameterException
-    ;
+        @WebParam(name = "asyncHandler", targetNamespace = "")
+        AsyncHandler<GetBooksByAuthorResponse> asyncHandler);
+
+    /**
+     * 
+     * @param author
+     * @return
+     *     returns java.util.List<itmo.web_services.service.Book>
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "getBooksByAuthor", targetNamespace = "http://service.web_services.itmo/", className = "itmo.web_services.service.GetBooksByAuthor")
+    @ResponseWrapper(localName = "getBooksByAuthorResponse", targetNamespace = "http://service.web_services.itmo/", className = "itmo.web_services.service.GetBooksByAuthorResponse")
+    @Action(input = "http://service.web_services.itmo/BooksWebService/getBooksByAuthorRequest", output = "http://service.web_services.itmo/BooksWebService/getBooksByAuthorResponse")
+    public List<Book> getBooksByAuthor(
+        @WebParam(name = "author", targetNamespace = "")
+        String author);
+
+    /**
+     * 
+     * @param title
+     * @return
+     *     returns javax.xml.ws.Response<itmo.web_services.service.GetBooksByTitleResponse>
+     */
+    @WebMethod(operationName = "getBooksByTitle")
+    @RequestWrapper(localName = "getBooksByTitle", targetNamespace = "http://service.web_services.itmo/", className = "itmo.web_services.service.GetBooksByTitle")
+    @ResponseWrapper(localName = "getBooksByTitleResponse", targetNamespace = "http://service.web_services.itmo/", className = "itmo.web_services.service.GetBooksByTitleResponse")
+    public Response<GetBooksByTitleResponse> getBooksByTitleAsync(
+        @WebParam(name = "title", targetNamespace = "")
+        String title);
+
+    /**
+     * 
+     * @param title
+     * @param asyncHandler
+     * @return
+     *     returns java.util.concurrent.Future<? extends java.lang.Object>
+     */
+    @WebMethod(operationName = "getBooksByTitle")
+    @RequestWrapper(localName = "getBooksByTitle", targetNamespace = "http://service.web_services.itmo/", className = "itmo.web_services.service.GetBooksByTitle")
+    @ResponseWrapper(localName = "getBooksByTitleResponse", targetNamespace = "http://service.web_services.itmo/", className = "itmo.web_services.service.GetBooksByTitleResponse")
+    public Future<?> getBooksByTitleAsync(
+        @WebParam(name = "title", targetNamespace = "")
+        String title,
+        @WebParam(name = "asyncHandler", targetNamespace = "")
+        AsyncHandler<GetBooksByTitleResponse> asyncHandler);
+
+    /**
+     * 
+     * @param title
+     * @return
+     *     returns java.util.List<itmo.web_services.service.Book>
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "getBooksByTitle", targetNamespace = "http://service.web_services.itmo/", className = "itmo.web_services.service.GetBooksByTitle")
+    @ResponseWrapper(localName = "getBooksByTitleResponse", targetNamespace = "http://service.web_services.itmo/", className = "itmo.web_services.service.GetBooksByTitleResponse")
+    @Action(input = "http://service.web_services.itmo/BooksWebService/getBooksByTitleRequest", output = "http://service.web_services.itmo/BooksWebService/getBooksByTitleResponse")
+    public List<Book> getBooksByTitle(
+        @WebParam(name = "title", targetNamespace = "")
+        String title);
+
+    /**
+     * 
+     * @param id
+     * @return
+     *     returns javax.xml.ws.Response<itmo.web_services.service.DeleteBookResponse>
+     */
+    @WebMethod(operationName = "deleteBook")
+    @RequestWrapper(localName = "deleteBook", targetNamespace = "http://service.web_services.itmo/", className = "itmo.web_services.service.DeleteBook")
+    @ResponseWrapper(localName = "deleteBookResponse", targetNamespace = "http://service.web_services.itmo/", className = "itmo.web_services.service.DeleteBookResponse")
+    public Response<DeleteBookResponse> deleteBookAsync(
+        @WebParam(name = "id", targetNamespace = "")
+        Long id);
+
+    /**
+     * 
+     * @param id
+     * @param asyncHandler
+     * @return
+     *     returns java.util.concurrent.Future<? extends java.lang.Object>
+     */
+    @WebMethod(operationName = "deleteBook")
+    @RequestWrapper(localName = "deleteBook", targetNamespace = "http://service.web_services.itmo/", className = "itmo.web_services.service.DeleteBook")
+    @ResponseWrapper(localName = "deleteBookResponse", targetNamespace = "http://service.web_services.itmo/", className = "itmo.web_services.service.DeleteBookResponse")
+    public Future<?> deleteBookAsync(
+        @WebParam(name = "id", targetNamespace = "")
+        Long id,
+        @WebParam(name = "asyncHandler", targetNamespace = "")
+        AsyncHandler<DeleteBookResponse> asyncHandler);
 
     /**
      * 
@@ -169,69 +523,82 @@ public interface BooksWebService {
 
     /**
      * 
-     * @return
-     *     returns java.lang.String
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "getImageAsString", targetNamespace = "http://service.web_services.itmo/", className = "itmo.web_services.service.GetImageAsString")
-    @ResponseWrapper(localName = "getImageAsStringResponse", targetNamespace = "http://service.web_services.itmo/", className = "itmo.web_services.service.GetImageAsStringResponse")
-    @Action(input = "http://service.web_services.itmo/BooksWebService/getImageAsStringRequest", output = "http://service.web_services.itmo/BooksWebService/getImageAsStringResponse")
-    public String getImageAsString();
-
-    /**
-     * 
      * @param publishingHouse
-     * @param title
      * @return
-     *     returns java.util.List<itmo.web_services.service.Book>
+     *     returns javax.xml.ws.Response<itmo.web_services.service.GetBooksByPublishingHouseResponse>
      */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "getBooksByTitleAndPublishingHouse", targetNamespace = "http://service.web_services.itmo/", className = "itmo.web_services.service.GetBooksByTitleAndPublishingHouse")
-    @ResponseWrapper(localName = "getBooksByTitleAndPublishingHouseResponse", targetNamespace = "http://service.web_services.itmo/", className = "itmo.web_services.service.GetBooksByTitleAndPublishingHouseResponse")
-    @Action(input = "http://service.web_services.itmo/BooksWebService/getBooksByTitleAndPublishingHouseRequest", output = "http://service.web_services.itmo/BooksWebService/getBooksByTitleAndPublishingHouseResponse")
-    public List<Book> getBooksByTitleAndPublishingHouse(
-        @WebParam(name = "title", targetNamespace = "")
-        String title,
+    @WebMethod(operationName = "getBooksByPublishingHouse")
+    @RequestWrapper(localName = "getBooksByPublishingHouse", targetNamespace = "http://service.web_services.itmo/", className = "itmo.web_services.service.GetBooksByPublishingHouse")
+    @ResponseWrapper(localName = "getBooksByPublishingHouseResponse", targetNamespace = "http://service.web_services.itmo/", className = "itmo.web_services.service.GetBooksByPublishingHouseResponse")
+    public Response<GetBooksByPublishingHouseResponse> getBooksByPublishingHouseAsync(
         @WebParam(name = "publishingHouse", targetNamespace = "")
         String publishingHouse);
 
     /**
      * 
-     * @param author
+     * @param publishingHouse
+     * @param asyncHandler
+     * @return
+     *     returns java.util.concurrent.Future<? extends java.lang.Object>
+     */
+    @WebMethod(operationName = "getBooksByPublishingHouse")
+    @RequestWrapper(localName = "getBooksByPublishingHouse", targetNamespace = "http://service.web_services.itmo/", className = "itmo.web_services.service.GetBooksByPublishingHouse")
+    @ResponseWrapper(localName = "getBooksByPublishingHouseResponse", targetNamespace = "http://service.web_services.itmo/", className = "itmo.web_services.service.GetBooksByPublishingHouseResponse")
+    public Future<?> getBooksByPublishingHouseAsync(
+        @WebParam(name = "publishingHouse", targetNamespace = "")
+        String publishingHouse,
+        @WebParam(name = "asyncHandler", targetNamespace = "")
+        AsyncHandler<GetBooksByPublishingHouseResponse> asyncHandler);
+
+    /**
+     * 
      * @param publishingHouse
      * @return
      *     returns java.util.List<itmo.web_services.service.Book>
      */
     @WebMethod
     @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "getBooksByAuthorAndPublishingHouse", targetNamespace = "http://service.web_services.itmo/", className = "itmo.web_services.service.GetBooksByAuthorAndPublishingHouse")
-    @ResponseWrapper(localName = "getBooksByAuthorAndPublishingHouseResponse", targetNamespace = "http://service.web_services.itmo/", className = "itmo.web_services.service.GetBooksByAuthorAndPublishingHouseResponse")
-    @Action(input = "http://service.web_services.itmo/BooksWebService/getBooksByAuthorAndPublishingHouseRequest", output = "http://service.web_services.itmo/BooksWebService/getBooksByAuthorAndPublishingHouseResponse")
-    public List<Book> getBooksByAuthorAndPublishingHouse(
+    @RequestWrapper(localName = "getBooksByPublishingHouse", targetNamespace = "http://service.web_services.itmo/", className = "itmo.web_services.service.GetBooksByPublishingHouse")
+    @ResponseWrapper(localName = "getBooksByPublishingHouseResponse", targetNamespace = "http://service.web_services.itmo/", className = "itmo.web_services.service.GetBooksByPublishingHouseResponse")
+    @Action(input = "http://service.web_services.itmo/BooksWebService/getBooksByPublishingHouseRequest", output = "http://service.web_services.itmo/BooksWebService/getBooksByPublishingHouseResponse")
+    public List<Book> getBooksByPublishingHouse(
+        @WebParam(name = "publishingHouse", targetNamespace = "")
+        String publishingHouse);
+
+    /**
+     * 
+     * @param min
+     * @param author
+     * @return
+     *     returns javax.xml.ws.Response<itmo.web_services.service.GetBooksByAuthorAndMinPagesResponse>
+     */
+    @WebMethod(operationName = "getBooksByAuthorAndMinPages")
+    @RequestWrapper(localName = "getBooksByAuthorAndMinPages", targetNamespace = "http://service.web_services.itmo/", className = "itmo.web_services.service.GetBooksByAuthorAndMinPages")
+    @ResponseWrapper(localName = "getBooksByAuthorAndMinPagesResponse", targetNamespace = "http://service.web_services.itmo/", className = "itmo.web_services.service.GetBooksByAuthorAndMinPagesResponse")
+    public Response<GetBooksByAuthorAndMinPagesResponse> getBooksByAuthorAndMinPagesAsync(
         @WebParam(name = "author", targetNamespace = "")
         String author,
-        @WebParam(name = "publishingHouse", targetNamespace = "")
-        String publishingHouse);
+        @WebParam(name = "min", targetNamespace = "")
+        int min);
 
     /**
      * 
-     * @param from
-     * @param to
+     * @param min
+     * @param author
+     * @param asyncHandler
      * @return
-     *     returns java.util.List<itmo.web_services.service.Book>
+     *     returns java.util.concurrent.Future<? extends java.lang.Object>
      */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "getBooksByPagesRange", targetNamespace = "http://service.web_services.itmo/", className = "itmo.web_services.service.GetBooksByPagesRange")
-    @ResponseWrapper(localName = "getBooksByPagesRangeResponse", targetNamespace = "http://service.web_services.itmo/", className = "itmo.web_services.service.GetBooksByPagesRangeResponse")
-    @Action(input = "http://service.web_services.itmo/BooksWebService/getBooksByPagesRangeRequest", output = "http://service.web_services.itmo/BooksWebService/getBooksByPagesRangeResponse")
-    public List<Book> getBooksByPagesRange(
-        @WebParam(name = "from", targetNamespace = "")
-        int from,
-        @WebParam(name = "to", targetNamespace = "")
-        int to);
+    @WebMethod(operationName = "getBooksByAuthorAndMinPages")
+    @RequestWrapper(localName = "getBooksByAuthorAndMinPages", targetNamespace = "http://service.web_services.itmo/", className = "itmo.web_services.service.GetBooksByAuthorAndMinPages")
+    @ResponseWrapper(localName = "getBooksByAuthorAndMinPagesResponse", targetNamespace = "http://service.web_services.itmo/", className = "itmo.web_services.service.GetBooksByAuthorAndMinPagesResponse")
+    public Future<?> getBooksByAuthorAndMinPagesAsync(
+        @WebParam(name = "author", targetNamespace = "")
+        String author,
+        @WebParam(name = "min", targetNamespace = "")
+        int min,
+        @WebParam(name = "asyncHandler", targetNamespace = "")
+        AsyncHandler<GetBooksByAuthorAndMinPagesResponse> asyncHandler);
 
     /**
      * 
@@ -253,21 +620,38 @@ public interface BooksWebService {
 
     /**
      * 
-     * @param max
      * @param author
+     * @param title
      * @return
-     *     returns java.util.List<itmo.web_services.service.Book>
+     *     returns javax.xml.ws.Response<itmo.web_services.service.GetBooksByTitleAndAuthorResponse>
      */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "getBooksByAuthorAndMaxPages", targetNamespace = "http://service.web_services.itmo/", className = "itmo.web_services.service.GetBooksByAuthorAndMaxPages")
-    @ResponseWrapper(localName = "getBooksByAuthorAndMaxPagesResponse", targetNamespace = "http://service.web_services.itmo/", className = "itmo.web_services.service.GetBooksByAuthorAndMaxPagesResponse")
-    @Action(input = "http://service.web_services.itmo/BooksWebService/getBooksByAuthorAndMaxPagesRequest", output = "http://service.web_services.itmo/BooksWebService/getBooksByAuthorAndMaxPagesResponse")
-    public List<Book> getBooksByAuthorAndMaxPages(
+    @WebMethod(operationName = "getBooksByTitleAndAuthor")
+    @RequestWrapper(localName = "getBooksByTitleAndAuthor", targetNamespace = "http://service.web_services.itmo/", className = "itmo.web_services.service.GetBooksByTitleAndAuthor")
+    @ResponseWrapper(localName = "getBooksByTitleAndAuthorResponse", targetNamespace = "http://service.web_services.itmo/", className = "itmo.web_services.service.GetBooksByTitleAndAuthorResponse")
+    public Response<GetBooksByTitleAndAuthorResponse> getBooksByTitleAndAuthorAsync(
+        @WebParam(name = "title", targetNamespace = "")
+        String title,
+        @WebParam(name = "author", targetNamespace = "")
+        String author);
+
+    /**
+     * 
+     * @param author
+     * @param title
+     * @param asyncHandler
+     * @return
+     *     returns java.util.concurrent.Future<? extends java.lang.Object>
+     */
+    @WebMethod(operationName = "getBooksByTitleAndAuthor")
+    @RequestWrapper(localName = "getBooksByTitleAndAuthor", targetNamespace = "http://service.web_services.itmo/", className = "itmo.web_services.service.GetBooksByTitleAndAuthor")
+    @ResponseWrapper(localName = "getBooksByTitleAndAuthorResponse", targetNamespace = "http://service.web_services.itmo/", className = "itmo.web_services.service.GetBooksByTitleAndAuthorResponse")
+    public Future<?> getBooksByTitleAndAuthorAsync(
+        @WebParam(name = "title", targetNamespace = "")
+        String title,
         @WebParam(name = "author", targetNamespace = "")
         String author,
-        @WebParam(name = "max", targetNamespace = "")
-        int max);
+        @WebParam(name = "asyncHandler", targetNamespace = "")
+        AsyncHandler<GetBooksByTitleAndAuthorResponse> asyncHandler);
 
     /**
      * 
@@ -289,17 +673,143 @@ public interface BooksWebService {
 
     /**
      * 
-     * @param publishingHouse
+     * @param max
+     * @param author
+     * @return
+     *     returns javax.xml.ws.Response<itmo.web_services.service.GetBooksByAuthorAndMaxPagesResponse>
+     */
+    @WebMethod(operationName = "getBooksByAuthorAndMaxPages")
+    @RequestWrapper(localName = "getBooksByAuthorAndMaxPages", targetNamespace = "http://service.web_services.itmo/", className = "itmo.web_services.service.GetBooksByAuthorAndMaxPages")
+    @ResponseWrapper(localName = "getBooksByAuthorAndMaxPagesResponse", targetNamespace = "http://service.web_services.itmo/", className = "itmo.web_services.service.GetBooksByAuthorAndMaxPagesResponse")
+    public Response<GetBooksByAuthorAndMaxPagesResponse> getBooksByAuthorAndMaxPagesAsync(
+        @WebParam(name = "author", targetNamespace = "")
+        String author,
+        @WebParam(name = "max", targetNamespace = "")
+        int max);
+
+    /**
+     * 
+     * @param max
+     * @param author
+     * @param asyncHandler
+     * @return
+     *     returns java.util.concurrent.Future<? extends java.lang.Object>
+     */
+    @WebMethod(operationName = "getBooksByAuthorAndMaxPages")
+    @RequestWrapper(localName = "getBooksByAuthorAndMaxPages", targetNamespace = "http://service.web_services.itmo/", className = "itmo.web_services.service.GetBooksByAuthorAndMaxPages")
+    @ResponseWrapper(localName = "getBooksByAuthorAndMaxPagesResponse", targetNamespace = "http://service.web_services.itmo/", className = "itmo.web_services.service.GetBooksByAuthorAndMaxPagesResponse")
+    public Future<?> getBooksByAuthorAndMaxPagesAsync(
+        @WebParam(name = "author", targetNamespace = "")
+        String author,
+        @WebParam(name = "max", targetNamespace = "")
+        int max,
+        @WebParam(name = "asyncHandler", targetNamespace = "")
+        AsyncHandler<GetBooksByAuthorAndMaxPagesResponse> asyncHandler);
+
+    /**
+     * 
+     * @param max
+     * @param author
      * @return
      *     returns java.util.List<itmo.web_services.service.Book>
      */
     @WebMethod
     @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "getBooksByPublishingHouse", targetNamespace = "http://service.web_services.itmo/", className = "itmo.web_services.service.GetBooksByPublishingHouse")
-    @ResponseWrapper(localName = "getBooksByPublishingHouseResponse", targetNamespace = "http://service.web_services.itmo/", className = "itmo.web_services.service.GetBooksByPublishingHouseResponse")
-    @Action(input = "http://service.web_services.itmo/BooksWebService/getBooksByPublishingHouseRequest", output = "http://service.web_services.itmo/BooksWebService/getBooksByPublishingHouseResponse")
-    public List<Book> getBooksByPublishingHouse(
-        @WebParam(name = "publishingHouse", targetNamespace = "")
-        String publishingHouse);
+    @RequestWrapper(localName = "getBooksByAuthorAndMaxPages", targetNamespace = "http://service.web_services.itmo/", className = "itmo.web_services.service.GetBooksByAuthorAndMaxPages")
+    @ResponseWrapper(localName = "getBooksByAuthorAndMaxPagesResponse", targetNamespace = "http://service.web_services.itmo/", className = "itmo.web_services.service.GetBooksByAuthorAndMaxPagesResponse")
+    @Action(input = "http://service.web_services.itmo/BooksWebService/getBooksByAuthorAndMaxPagesRequest", output = "http://service.web_services.itmo/BooksWebService/getBooksByAuthorAndMaxPagesResponse")
+    public List<Book> getBooksByAuthorAndMaxPages(
+        @WebParam(name = "author", targetNamespace = "")
+        String author,
+        @WebParam(name = "max", targetNamespace = "")
+        int max);
+
+    /**
+     * 
+     * @param from
+     * @param to
+     * @return
+     *     returns javax.xml.ws.Response<itmo.web_services.service.GetBooksByPagesRangeResponse>
+     */
+    @WebMethod(operationName = "getBooksByPagesRange")
+    @RequestWrapper(localName = "getBooksByPagesRange", targetNamespace = "http://service.web_services.itmo/", className = "itmo.web_services.service.GetBooksByPagesRange")
+    @ResponseWrapper(localName = "getBooksByPagesRangeResponse", targetNamespace = "http://service.web_services.itmo/", className = "itmo.web_services.service.GetBooksByPagesRangeResponse")
+    public Response<GetBooksByPagesRangeResponse> getBooksByPagesRangeAsync(
+        @WebParam(name = "from", targetNamespace = "")
+        int from,
+        @WebParam(name = "to", targetNamespace = "")
+        int to);
+
+    /**
+     * 
+     * @param from
+     * @param to
+     * @param asyncHandler
+     * @return
+     *     returns java.util.concurrent.Future<? extends java.lang.Object>
+     */
+    @WebMethod(operationName = "getBooksByPagesRange")
+    @RequestWrapper(localName = "getBooksByPagesRange", targetNamespace = "http://service.web_services.itmo/", className = "itmo.web_services.service.GetBooksByPagesRange")
+    @ResponseWrapper(localName = "getBooksByPagesRangeResponse", targetNamespace = "http://service.web_services.itmo/", className = "itmo.web_services.service.GetBooksByPagesRangeResponse")
+    public Future<?> getBooksByPagesRangeAsync(
+        @WebParam(name = "from", targetNamespace = "")
+        int from,
+        @WebParam(name = "to", targetNamespace = "")
+        int to,
+        @WebParam(name = "asyncHandler", targetNamespace = "")
+        AsyncHandler<GetBooksByPagesRangeResponse> asyncHandler);
+
+    /**
+     * 
+     * @param from
+     * @param to
+     * @return
+     *     returns java.util.List<itmo.web_services.service.Book>
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "getBooksByPagesRange", targetNamespace = "http://service.web_services.itmo/", className = "itmo.web_services.service.GetBooksByPagesRange")
+    @ResponseWrapper(localName = "getBooksByPagesRangeResponse", targetNamespace = "http://service.web_services.itmo/", className = "itmo.web_services.service.GetBooksByPagesRangeResponse")
+    @Action(input = "http://service.web_services.itmo/BooksWebService/getBooksByPagesRangeRequest", output = "http://service.web_services.itmo/BooksWebService/getBooksByPagesRangeResponse")
+    public List<Book> getBooksByPagesRange(
+        @WebParam(name = "from", targetNamespace = "")
+        int from,
+        @WebParam(name = "to", targetNamespace = "")
+        int to);
+
+    /**
+     * 
+     * @return
+     *     returns javax.xml.ws.Response<itmo.web_services.service.GetImageAsAttachmentResponse>
+     */
+    @WebMethod(operationName = "getImageAsAttachment")
+    @RequestWrapper(localName = "getImageAsAttachment", targetNamespace = "http://service.web_services.itmo/", className = "itmo.web_services.service.GetImageAsAttachment")
+    @ResponseWrapper(localName = "getImageAsAttachmentResponse", targetNamespace = "http://service.web_services.itmo/", className = "itmo.web_services.service.GetImageAsAttachmentResponse")
+    public Response<GetImageAsAttachmentResponse> getImageAsAttachmentAsync();
+
+    /**
+     * 
+     * @param asyncHandler
+     * @return
+     *     returns java.util.concurrent.Future<? extends java.lang.Object>
+     */
+    @WebMethod(operationName = "getImageAsAttachment")
+    @RequestWrapper(localName = "getImageAsAttachment", targetNamespace = "http://service.web_services.itmo/", className = "itmo.web_services.service.GetImageAsAttachment")
+    @ResponseWrapper(localName = "getImageAsAttachmentResponse", targetNamespace = "http://service.web_services.itmo/", className = "itmo.web_services.service.GetImageAsAttachmentResponse")
+    public Future<?> getImageAsAttachmentAsync(
+        @WebParam(name = "asyncHandler", targetNamespace = "")
+        AsyncHandler<GetImageAsAttachmentResponse> asyncHandler);
+
+    /**
+     * 
+     * @return
+     *     returns byte[]
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "getImageAsAttachment", targetNamespace = "http://service.web_services.itmo/", className = "itmo.web_services.service.GetImageAsAttachment")
+    @ResponseWrapper(localName = "getImageAsAttachmentResponse", targetNamespace = "http://service.web_services.itmo/", className = "itmo.web_services.service.GetImageAsAttachmentResponse")
+    @Action(input = "http://service.web_services.itmo/BooksWebService/getImageAsAttachmentRequest", output = "http://service.web_services.itmo/BooksWebService/getImageAsAttachmentResponse")
+    public byte[] getImageAsAttachment();
 
 }

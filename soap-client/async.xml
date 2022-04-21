@@ -1,0 +1,6 @@
+<!--binding file for async calls-->
+<!-- wsimport http://localhost:8080/BookService?wsdl -keep -b async.xml -->
+<jaxws:bindings xmlns:jaxws="http://java.sun.com/xml/ns/jaxws"
+               wsdlLocation="http://localhost:8080/BookService?wsdl">
+    <jaxws:enableAsyncMapping>true</jaxws:enableAsyncMapping>
+</jaxws:bindings>
