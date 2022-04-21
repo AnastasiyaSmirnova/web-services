@@ -127,8 +127,8 @@ BookServiceFault*](https://github.com/AnastasiyaSmirnova/web-services/blob/labor
 
 ##### Дополнительное задание II: thread-safe JAX-WS client.
 
-Согласно [*докуметации*](https://cxf.apache.org/faq.html#FAQ-AreJAX-WSclientproxiesthreadsafe?) JAX-WS клиенты не являются
-потобезпасными:
+Согласно [*докуметации*](https://cxf.apache.org/faq.html#FAQ-AreJAX-WSclientproxiesthreadsafe?) JAX-WS клиенты не
+являются потобезпасными:
 
 ``` 
 Official JAX-WS answer: 
@@ -138,13 +138,16 @@ To write portable code, you should treat them as non-thread safe
 and synchronize access or use a pool of instances or similar.
 ```
 
-Для решения проблемы в программе используются [*ассинхронные вызовы*](https://github.com/AnastasiyaSmirnova/web-services/blob/9b651b94ff2031c19d99a27f3cc14c5ea77c6010/soap-client/src/main/java/itmo/web_services/WebClient.java#L209).
+Для решения проблемы в программе используются [*ассинхронные
+вызовы*](https://github.com/AnastasiyaSmirnova/web-services/blob/9b651b94ff2031c19d99a27f3cc14c5ea77c6010/soap-client/src/main/java/itmo/web_services/WebClient.java#L209)
+.
 
-Изменены параметры использования wsimport: 
+Изменены параметры использования wsimport:
 
 ```wsimport http://localhost:8080/BookService?wsdl -keep -b async.xml```
 
-[*Файл async.xml*](https://github.com/AnastasiyaSmirnova/web-services/blob/9b651b94ff2031c19d99a27f3cc14c5ea77c6010/soap-client/async.xml)
+[*Файл
+async.xml*](https://github.com/AnastasiyaSmirnova/web-services/blob/9b651b94ff2031c19d99a27f3cc14c5ea77c6010/soap-client/async.xml)
 
 ---
 ---
@@ -160,7 +163,34 @@ and synchronize access or use a pool of instances or similar.
 
 * standalone REST application
     * [*server*](https://github.com/AnastasiyaSmirnova/web-services/tree/laboratory-work-4/rest-standalone-application)
-    * [*client*](https://github.com/AnastasiyaSmirnova/web-services/blob/laboratory-work-4/rest-client/src/main/kotlin/itmo/web_services/impl/JavaEERestClient.kt)
+    * [*
+      client*](https://github.com/AnastasiyaSmirnova/web-services/blob/laboratory-work-4/rest-client/src/main/kotlin/itmo/web_services/impl/JavaEERestClient.kt)
 * java EE REST application
     * [*server*](https://github.com/AnastasiyaSmirnova/web-services/tree/laboratory-work-4/java-ee-rest-application)
-    * [*client*](https://github.com/AnastasiyaSmirnova/web-services/blob/laboratory-work-4/rest-client/src/main/kotlin/itmo/web_services/impl/JavaEERestClient.kt)
+    * [*
+      client*](https://github.com/AnastasiyaSmirnova/web-services/blob/laboratory-work-4/rest-client/src/main/kotlin/itmo/web_services/impl/JavaEERestClient.kt)
+
+### Лабораторная работа 5
+
+*Задание*
+
+Необходимо выполнить задание из второй работы, но с использованием REST-сервиса. Таблицу базы данных, а также код для
+работы с ней можно оставить без изменений.
+
+[*Исходный код*](https://github.com/AnastasiyaSmirnova/web-services/tree/laboratory-work-5)
+
+- [Измененные запросы в клиентской части](https://github.com/AnastasiyaSmirnova/web-services/blob/laboratory-work-5/rest-client/src/main/kotlin/itmo/web_services/impl/JavaEERestClient.kt)
+- [Измененные запросы в серверной части](https://github.com/AnastasiyaSmirnova/web-services/blob/laboratory-work-5/java-ee-rest-application/src/main/java/itmo/webservices/service/BookService.java)
+
+### Лабораторная работа 6
+
+*Задание*
+
+Необходимо выполнить задание из третьей работы, но с использованием
+REST-сервиса. Таблицу базы данных, а также код для работы с ней можно оставить
+без изменений.
+
+[*Исходный код*](https://github.com/AnastasiyaSmirnova/web-services/tree/laboratory-work-6)
+
+- [Класс ошибки](https://github.com/AnastasiyaSmirnova/web-services/blob/laboratory-work-6/java-ee-rest-application/src/main/java/itmo/webservices/exception/InvalidBookParamException.java)
+- [Пример обработки ошибки на клиенте](https://github.com/AnastasiyaSmirnova/web-services/blob/a96c1486777ae6d53d8bcd56358869023548d49f/rest-client/src/main/kotlin/itmo/web_services/impl/JavaEERestClient.kt#L109)
