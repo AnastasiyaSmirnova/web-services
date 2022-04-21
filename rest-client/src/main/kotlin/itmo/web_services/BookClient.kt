@@ -1,7 +1,6 @@
 package itmo.web_services
 
 import itmo.web_services.model.AddBookRequest
-import itmo.web_services.model.Book
 import itmo.web_services.model.UpdateBookRequest
 
 interface BookClient {

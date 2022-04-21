@@ -3,7 +3,6 @@ package itmo.web_services
 import itmo.web_services.impl.JavaEERestClient
 import itmo.web_services.impl.StandaloneRestClient
 import itmo.web_services.model.AddBookRequest
-import itmo.web_services.model.Book
 import itmo.web_services.model.UpdateBookRequest
 
 enum class ServerType {

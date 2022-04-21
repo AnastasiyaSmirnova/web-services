@@ -1,6 +1,7 @@
 package itmo.webservices.service;
 
 import itmo.webservices.dao.BookDao;
+import itmo.webservices.exception.InvalidBookParamException;
 import itmo.webservices.model.*;
 
 import javax.annotation.Resource;
@@ -27,37 +28,53 @@ public class BookService {
     }
 
     @POST
-    public long addBook(AddBookRequest newBook) {
+    public long addBook(AddBookRequest newBook) throws InvalidBookParamException {
         System.out.println("add book " + newBook);
+        Language language = validateLanguage(newBook.getLanguage());
         return new BookDao(getConnection())
                 .addBook(
                         newBook.getTitle(),
                         newBook.getAuthor(),
                         newBook.getPublishingHouse(),
-                        Language.valueOf(newBook.getLanguage()),
+                        language,
                         newBook.getPages()
                 );
     }
 
     @PUT
-    public QueryStatus updateBook(UpdateBookRequest book) {
+    public QueryStatus updateBook(UpdateBookRequest book) throws InvalidBookParamException {
         System.out.println("update book " + book);
-
+        validateUid(book.getUid());
+        Language language = validateLanguage(book.getLanguage());
         return new BookDao(getConnection()).updateBook(
                 book.getUid(),
                 book.getTitle(),
                 book.getAuthor(),
                 book.getPublishingHouse(),
-                Language.valueOf(book.getLanguage()),
+                language,
                 book.getPages()
         );
     }
 
     @DELETE
     @Path("{uid}")
-    public QueryStatus deleteBook(@PathParam("uid") long uid) {
+    public QueryStatus deleteBook(@PathParam("uid") long uid) throws InvalidBookParamException {
         System.out.println("delete book " + uid);
+        validateUid(uid);
         return new BookDao(getConnection()).deleteBook(uid);
+    }
+
+    private void validateUid(Long uid) throws InvalidBookParamException {
+        if (uid == null || new BookDao(getConnection()).getBookByUid(uid) == null)
+            throw new InvalidBookParamException("unknown uid");
+    }
+
+    private Language validateLanguage(String language) throws InvalidBookParamException {
+        try {
+            return Language.valueOf(language);
+        } catch (IllegalArgumentException e) {
+            throw new InvalidBookParamException("unknown language - " + language);
+        }
     }
 
     @GET

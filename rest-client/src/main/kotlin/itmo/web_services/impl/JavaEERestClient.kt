@@ -97,8 +97,6 @@ class JavaEERestClient : BookClient {
     }
 
     override fun addNewBook(newBook: AddBookRequest) {
-        val body = newBook.toJson()
-        println(body)
         val request = HttpRequest.newBuilder()
             .uri(URI.create(url))
             .POST(ofString(newBook.toJson()))
@@ -107,12 +105,14 @@ class JavaEERestClient : BookClient {
             .version(HttpClient.Version.HTTP_1_1)
             .build()
 
-        val uid = client.send(request, HttpResponse.BodyHandlers.ofString())
-            .body()
-            .value<Long>()
-        println("new book created with UID #$uid")
+        val response = client.send(request, HttpResponse.BodyHandlers.ofString())
+        if (response.statusCode().successStatus()) {
+            val uid = response
+                .body()
+                .value<Long>()
+            println("new book created with UID #$uid")
+        } else println("something goes wrong: ${response.body()}")
     }
-
 
     override fun updateBook(book: UpdateBookRequest) {
         val request = HttpRequest.newBuilder()
@@ -123,10 +123,13 @@ class JavaEERestClient : BookClient {
             .version(HttpClient.Version.HTTP_1_1)
             .build()
 
-        val status = client.send(request, HttpResponse.BodyHandlers.ofString())
-            .body()
-            .value<QueryStatus>()
-        println("update operation status $status")
+        val response = client.send(request, HttpResponse.BodyHandlers.ofString())
+        if (response.statusCode().successStatus()) {
+            val status = response
+                .body()
+                .value<QueryStatus>()
+            println("update operation status $status")
+        } else println("something goes wrong: ${response.body()}")
     }
 
     override fun deleteBook(uid: Long) {
@@ -137,11 +140,17 @@ class JavaEERestClient : BookClient {
             .header("Accept", "application/json")
             .version(HttpClient.Version.HTTP_1_1)
             .build()
-        val status = client.send(request, HttpResponse.BodyHandlers.ofString())
-            .body()
-            .value<QueryStatus>()
-        println("delete operation status $status")
+
+        val response = client.send(request, HttpResponse.BodyHandlers.ofString())
+        if (response.statusCode().successStatus()) {
+            val status = response
+                .body()
+                .value<QueryStatus>()
+            println("delete operation status $status")
+        } else println("something goes wrong: ${response.body()}")
     }
+
+    private fun Int.successStatus() = toString().startsWith("2")
 
     private inline fun <reified T> String.value() = mapper.readValue<T>(this)
 

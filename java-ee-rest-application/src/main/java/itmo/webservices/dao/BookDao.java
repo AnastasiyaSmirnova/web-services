@@ -87,6 +87,19 @@ public class BookDao {
         return selectBooks("select * from books");
     }
 
+    public Book getBookByUid(long uid) {
+        Book book = null;
+        try {
+            book = executor.execQuery("select * from books where id = " + uid, result -> {
+                result.next();
+                return generateBook(result);
+            });
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return book;
+    }
+
     public List<Book> getBooksByTitle(String title) {
         return selectBooks("select * from books where title ='" + title + "'");
     }
