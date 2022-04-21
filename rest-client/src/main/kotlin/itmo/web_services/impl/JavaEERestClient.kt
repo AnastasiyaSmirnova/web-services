@@ -1,13 +1,14 @@
 package itmo.web_services.impl
 
 import itmo.web_services.BookClient
-import itmo.web_services.model.Book
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
+import itmo.web_services.model.*
 
 import java.net.URI
 import java.net.http.HttpClient
 import java.net.http.HttpRequest
+import java.net.http.HttpRequest.BodyPublishers.ofString
 import java.net.http.HttpResponse
 
 class JavaEERestClient : BookClient {
@@ -95,7 +96,56 @@ class JavaEERestClient : BookClient {
         println(books.joinToString("\n"))
     }
 
+    override fun addNewBook(newBook: AddBookRequest) {
+        val body = newBook.toJson()
+        println(body)
+        val request = HttpRequest.newBuilder()
+            .uri(URI.create(url))
+            .POST(ofString(newBook.toJson()))
+            .header("Content-Type", "application/json")
+            .header("Accept", "application/json")
+            .version(HttpClient.Version.HTTP_1_1)
+            .build()
+
+        val uid = client.send(request, HttpResponse.BodyHandlers.ofString())
+            .body()
+            .value<Long>()
+        println("new book created with UID #$uid")
+    }
+
+
+    override fun updateBook(book: UpdateBookRequest) {
+        val request = HttpRequest.newBuilder()
+            .uri(URI.create(url))
+            .PUT(ofString(book.toJson()))
+            .header("Content-Type", "application/json")
+            .header("Accept", "application/json")
+            .version(HttpClient.Version.HTTP_1_1)
+            .build()
+
+        val status = client.send(request, HttpResponse.BodyHandlers.ofString())
+            .body()
+            .value<QueryStatus>()
+        println("update operation status $status")
+    }
+
+    override fun deleteBook(uid: Long) {
+        val request = HttpRequest.newBuilder()
+            .uri(URI.create("$url/$uid"))
+            .DELETE()
+            .header("Content-Type", "application/json")
+            .header("Accept", "application/json")
+            .version(HttpClient.Version.HTTP_1_1)
+            .build()
+        val status = client.send(request, HttpResponse.BodyHandlers.ofString())
+            .body()
+            .value<QueryStatus>()
+        println("delete operation status $status")
+    }
+
     private inline fun <reified T> String.value() = mapper.readValue<T>(this)
+
+    private inline fun <reified T : Books> T.toJson(): String = mapper.writeValueAsString(this)
 
     private fun request(uri: String) = HttpRequest.newBuilder()
         .uri(URI.create(uri))

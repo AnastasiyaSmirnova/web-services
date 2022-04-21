@@ -38,6 +38,9 @@ class RestClient(
                 8 -> client.getBooksByAuthorAndMinPages(type)
                 9 -> client.getBooksByAuthorAndMaxPages(type)
                 10 -> client.getBooks(type)
+                11 -> client.addBook(type)
+                12 -> client.updateBook(type)
+                13 -> client.deleteBook(type)
                 else ->
                     println("unknown action")
             }

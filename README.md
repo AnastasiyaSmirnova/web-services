@@ -125,7 +125,7 @@ BookServiceFault*](https://github.com/AnastasiyaSmirnova/web-services/blob/labor
 
 ---
 
-##### Дополнительное задание II: Обработка бинарных данных.
+##### Дополнительное задание II: thread-safe JAX-WS client.
 
 Согласно [*докуметации*](https://cxf.apache.org/faq.html#FAQ-AreJAX-WSclientproxiesthreadsafe?) JAX-WS клиенты не являются
 потобезпасными:

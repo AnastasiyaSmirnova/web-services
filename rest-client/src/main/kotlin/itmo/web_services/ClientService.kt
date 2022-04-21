@@ -2,6 +2,9 @@ package itmo.web_services
 
 import itmo.web_services.impl.JavaEERestClient
 import itmo.web_services.impl.StandaloneRestClient
+import itmo.web_services.model.AddBookRequest
+import itmo.web_services.model.Book
+import itmo.web_services.model.UpdateBookRequest
 
 enum class ServerType {
     STANDALONE, JAVA_EE
@@ -84,4 +87,49 @@ class ClientService {
         clients[type]?.getBooksByAuthorAndMaxPages(author, max.toInt())
     }
 
+    fun addBook(type: ServerType) {
+        println("enter title: ")
+        val title = readLine()!!
+        println("enter author: ")
+        val author = readLine()!!
+        println("enter pubHouse: ")
+        val pubHouse = readLine()!!
+        println("enter lang: ")
+        val lang = readLine()!!
+        println("enter pages: ")
+        val pages = readLine()!!
+
+        clients[type]?.addNewBook(
+            AddBookRequest(
+                title, author, pubHouse, lang, pages.toInt()
+            )
+        )
+    }
+
+    fun updateBook(type: ServerType) {
+        println("enter uid: ")
+        val uid = readLine()!!
+        println("enter title: ")
+        val title = readLine()!!
+        println("enter author: ")
+        val author = readLine()!!
+        println("enter pubHouse: ")
+        val pubHouse = readLine()!!
+        println("enter lang: ")
+        val lang = readLine()!!
+        println("enter pages: ")
+        val pages = readLine()!!
+
+        clients[type]?.updateBook(
+            UpdateBookRequest(
+                uid.toLong(), title, author, pubHouse, lang, pages.toInt()
+            )
+        )
+    }
+
+    fun deleteBook(type: ServerType) {
+        println("enter uid: ")
+        val uid = readLine()!!
+        clients[type]?.deleteBook(uid.toLong())
+    }
 }

@@ -3,6 +3,7 @@ package itmo.webservices.dao;
 import itmo.webservices.dao.executor.Executor;
 import itmo.webservices.model.Book;
 import itmo.webservices.model.Language;
+import itmo.webservices.model.QueryStatus;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -17,6 +18,70 @@ public class BookDao {
         this.executor = new Executor(connection);
     }
 
+    // return id of added book
+    public long addBook(String title, String author, String pubHouse, Language language, int pages) {
+        try {
+            String createQuery = "insert into books(title, author, publishing_house, language, pages) values(" +
+                    "'" + title + "'," +
+                    "'" + author + "'," +
+                    "'" + pubHouse + "'," +
+                    "'" + language.name() + "'," +
+                    pages + ")";
+            executor.execUpdate(createQuery);
+            return getBooksByMetaData(title, author, pubHouse, language, pages);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return -1;
+        }
+    }
+
+    private long getBooksByMetaData(String title, String author, String pubHouse, Language language, int pages) {
+        try {
+            String select = "select id from books where " +
+                    "title = '" + title + "' and " +
+                    "author = '" + author + "'and " +
+                    "publishing_house = '" + pubHouse + "'and " +
+                    "language  = '" + language.name() + "'and " +
+                    "pages = " + pages;
+            return executor.execQuery(select, result -> {
+                result.next();
+                return result.getLong("id");
+            });
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return -1;
+        }
+    }
+
+    // return status
+    public QueryStatus updateBook(long bookId, String title, String author, String pubHouse, Language language, int pages) {
+        try {
+            String updateQuery = "update books set " +
+                    "title = '" + title + "', " +
+                    "author = '" + author + "', " +
+                    "publishing_house = '" + pubHouse + "', " +
+                    "language = '" + language.name() + "', " +
+                    "pages = " + pages + " " +
+                    "where id = " + bookId;
+            executor.execUpdate(updateQuery);
+            return QueryStatus.SUCCESS;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return QueryStatus.ERROR;
+        }
+    }
+
+    // return status
+    public QueryStatus deleteBook(long bookId) {
+        try {
+            String deleteQuery = "delete from books where id = " + bookId;
+            executor.execUpdate(deleteQuery);
+            return QueryStatus.SUCCESS;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return QueryStatus.ERROR;
+        }
+    }
 
     public List<Book> getBooks() {
         return selectBooks("select * from books");

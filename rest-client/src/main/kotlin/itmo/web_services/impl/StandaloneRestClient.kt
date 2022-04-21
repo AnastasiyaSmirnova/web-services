@@ -5,8 +5,7 @@ import com.sun.jersey.api.client.ClientResponse
 import com.sun.jersey.api.client.WebResource
 import com.sun.jersey.api.client.config.DefaultClientConfig
 import itmo.web_services.BookClient
-import itmo.web_services.model.BookResponse
-import itmo.web_services.model.BooksResponse
+import itmo.web_services.model.*
 import org.codehaus.jackson.jaxrs.JacksonJsonProvider
 import javax.ws.rs.core.MediaType
 
@@ -94,6 +93,12 @@ class StandaloneRestClient : BookClient {
         val webResource: WebResource = client.resource("$url/byAuthorAndMaxPages?author=$author&max=$max")
         sendRequest(webResource).getEntity(BookResponse::class.java).print()
     }
+
+    override fun addNewBook(newBook: AddBookRequest) {}
+
+    override fun updateBook(book: UpdateBookRequest) {}
+
+    override fun deleteBook(uid: Long) {}
 
     private fun sendRequest(webResource: WebResource): ClientResponse {
         val response: ClientResponse = webResource.accept(MediaType.APPLICATION_JSON).get(ClientResponse::class.java)

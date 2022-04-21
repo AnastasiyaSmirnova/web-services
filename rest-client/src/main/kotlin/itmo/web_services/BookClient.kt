@@ -1,5 +1,9 @@
 package itmo.web_services
 
+import itmo.web_services.model.AddBookRequest
+import itmo.web_services.model.Book
+import itmo.web_services.model.UpdateBookRequest
+
 interface BookClient {
     fun getBooks()
     fun getBooksByTitle(title: String)
@@ -11,4 +15,7 @@ interface BookClient {
     fun getBooksByPagesRange(from: Int, to: Int)
     fun getBooksByAuthorAndMinPages(author: String, min: Int)
     fun getBooksByAuthorAndMaxPages(author: String, max: Int)
+    fun addNewBook(newBook: AddBookRequest)
+    fun updateBook(book: UpdateBookRequest)
+    fun deleteBook(uid: Long)
 }

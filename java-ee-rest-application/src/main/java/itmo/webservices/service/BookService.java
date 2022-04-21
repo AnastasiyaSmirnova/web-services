@@ -1,15 +1,12 @@
 package itmo.webservices.service;
 
 import itmo.webservices.dao.BookDao;
-import itmo.webservices.model.Book;
+import itmo.webservices.model.*;
 
 import javax.annotation.Resource;
 import javax.enterprise.context.RequestScoped;
 import javax.sql.DataSource;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.xml.bind.annotation.XmlElement;
 import java.sql.Connection;
@@ -29,13 +26,44 @@ public class BookService {
         return new BookDao(getConnection()).getBooks();
     }
 
+    @POST
+    public long addBook(AddBookRequest newBook) {
+        System.out.println("add book " + newBook);
+        return new BookDao(getConnection())
+                .addBook(
+                        newBook.getTitle(),
+                        newBook.getAuthor(),
+                        newBook.getPublishingHouse(),
+                        Language.valueOf(newBook.getLanguage()),
+                        newBook.getPages()
+                );
+    }
+
+    @PUT
+    public QueryStatus updateBook(UpdateBookRequest book) {
+        System.out.println("update book " + book);
+
+        return new BookDao(getConnection()).updateBook(
+                book.getUid(),
+                book.getTitle(),
+                book.getAuthor(),
+                book.getPublishingHouse(),
+                Language.valueOf(book.getLanguage()),
+                book.getPages()
+        );
+    }
+
+    @DELETE
+    @Path("{uid}")
+    public QueryStatus deleteBook(@PathParam("uid") long uid) {
+        System.out.println("delete book " + uid);
+        return new BookDao(getConnection()).deleteBook(uid);
+    }
+
     @GET
     @Path("byTitle")
     public List<Book> getBooksByTitle(@QueryParam("title") @XmlElement(required = true) String title) {
-        List<Book> res = new BookDao(getConnection()).getBooksByTitle(title);
-        System.out.println(title);
-        System.out.println(res);
-        return res;
+        return new BookDao(getConnection()).getBooksByTitle(title);
     }
 
     @GET
