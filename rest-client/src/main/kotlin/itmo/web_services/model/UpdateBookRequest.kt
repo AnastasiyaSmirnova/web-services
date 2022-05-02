@@ -7,4 +7,4 @@ data class UpdateBookRequest(
     val publishingHouse: String,
     val language: String,
     val pages: Int
-) : Books()
+) : JsonObject()

@@ -131,4 +131,17 @@ class ClientService {
         val uid = readLine()!!
         clients[type]?.deleteBook(uid.toLong())
     }
+
+    fun login(type: ServerType) {
+        println("enter username")
+        val username = readLine()!!
+        println("enter pswd")
+        val pswd = readLine()!!
+
+        clients[type]?.login(username, pswd)
+    }
+
+    fun logout(type: ServerType) {
+        clients[type]?.logout()
+    }
 }

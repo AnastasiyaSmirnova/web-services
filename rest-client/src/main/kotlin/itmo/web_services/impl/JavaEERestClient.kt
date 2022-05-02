@@ -13,8 +13,12 @@ import java.net.http.HttpResponse
 
 class JavaEERestClient : BookClient {
     private val url = "http://localhost:8080/java-ee-rest-application-books-rest/rest/books"
+    private val authUrl = "http://localhost:8080/java-ee-rest-application-books-rest/rest/auth"
     private var client: HttpClient = HttpClient.newBuilder().build()
     private val mapper = ObjectMapper()
+
+    private var token: String? = null
+    private val AUTHENTICATION_SCHEME = "Basic"
 
     override fun getBooks() {
         val request = request(url)
@@ -102,6 +106,7 @@ class JavaEERestClient : BookClient {
             .POST(ofString(newBook.toJson()))
             .header("Content-Type", "application/json")
             .header("Accept", "application/json")
+            .header("Authorization", "$AUTHENTICATION_SCHEME: $token")
             .version(HttpClient.Version.HTTP_1_1)
             .build()
 
@@ -120,6 +125,7 @@ class JavaEERestClient : BookClient {
             .PUT(ofString(book.toJson()))
             .header("Content-Type", "application/json")
             .header("Accept", "application/json")
+            .header("Authorization", "$AUTHENTICATION_SCHEME: $token")
             .version(HttpClient.Version.HTTP_1_1)
             .build()
 
@@ -138,6 +144,7 @@ class JavaEERestClient : BookClient {
             .DELETE()
             .header("Content-Type", "application/json")
             .header("Accept", "application/json")
+            .header("Authorization", "$AUTHENTICATION_SCHEME: $token")
             .version(HttpClient.Version.HTTP_1_1)
             .build()
 
@@ -150,11 +157,50 @@ class JavaEERestClient : BookClient {
         } else println("something goes wrong: ${response.body()}")
     }
 
+    override fun login(username: String, pswd: String) {
+        val user = User(username, pswd)
+        val json = user.toJson()
+        println(json)
+        val request = HttpRequest.newBuilder()
+            .uri(URI.create("$authUrl/login"))
+            .POST(ofString(user.toJson()))
+            .header("Content-Type", "application/json")
+            .header("Accept", "application/json")
+            .version(HttpClient.Version.HTTP_1_1)
+            .build()
+
+        val response = client.send(request, HttpResponse.BodyHandlers.ofString())
+        if (response.statusCode().successStatus()) {
+            val token = response
+                .body()
+                .value<String>()
+            println("user login with token $token")
+            this.token = token
+        } else println("something goes wrong: ${response.body()}")
+    }
+
+    override fun logout() {
+        val request = HttpRequest.newBuilder()
+            .uri(URI.create("$authUrl/logout"))
+            .POST(ofString(""))
+            .header("Content-Type", "application/json")
+            .header("Accept", "application/json")
+            .header("Authorization", "$AUTHENTICATION_SCHEME: $token")
+            .version(HttpClient.Version.HTTP_1_1)
+            .build()
+
+        val response = client.send(request, HttpResponse.BodyHandlers.ofString())
+        if (response.statusCode().successStatus()) {
+            println("user logout")
+            this.token = null
+        } else println("something goes wrong: ${response.body()}")
+    }
+
     private fun Int.successStatus() = toString().startsWith("2")
 
     private inline fun <reified T> String.value() = mapper.readValue<T>(this)
 
-    private inline fun <reified T : Books> T.toJson(): String = mapper.writeValueAsString(this)
+    private inline fun <reified T : JsonObject> T.toJson(): String = mapper.writeValueAsString(this)
 
     private fun request(uri: String) = HttpRequest.newBuilder()
         .uri(URI.create(uri))

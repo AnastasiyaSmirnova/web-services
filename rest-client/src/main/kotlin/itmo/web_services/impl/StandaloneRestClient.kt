@@ -100,6 +100,10 @@ class StandaloneRestClient : BookClient {
 
     override fun deleteBook(uid: Long) {}
 
+    override fun login(username: String, pswd: String) {}
+
+    override fun logout() {}
+
     private fun sendRequest(webResource: WebResource): ClientResponse {
         val response: ClientResponse = webResource.accept(MediaType.APPLICATION_JSON).get(ClientResponse::class.java)
         check(response.status == ClientResponse.Status.OK.statusCode) { "Request failed" }

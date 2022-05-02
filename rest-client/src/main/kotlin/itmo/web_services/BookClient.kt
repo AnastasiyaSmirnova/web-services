@@ -17,4 +17,7 @@ interface BookClient {
     fun addNewBook(newBook: AddBookRequest)
     fun updateBook(book: UpdateBookRequest)
     fun deleteBook(uid: Long)
+
+    fun login(username: String, pswd: String)
+    fun logout()
 }

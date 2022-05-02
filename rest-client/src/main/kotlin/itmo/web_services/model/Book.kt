@@ -4,7 +4,7 @@ import itmo.web_services.model.annotation.NoArg
 import org.codehaus.jackson.annotate.JsonProperty
 import javax.xml.bind.annotation.XmlRootElement
 
-open class Books
+open class JsonObject
 
 @NoArg
 @XmlRootElement

@@ -22,6 +22,8 @@ class RestClient(
                     "\n11 - add new book" +
                     "\n12 - update book " +
                     "\n13 - delete book" +
+                    "\n14 - login" +
+                    "\n15 - logout" +
                     "\n0 - exit"
         )
 
@@ -41,6 +43,8 @@ class RestClient(
                 11 -> client.addBook(type)
                 12 -> client.updateBook(type)
                 13 -> client.deleteBook(type)
+                14 -> client.login(type)
+                15 -> client.logout(type)
                 else ->
                     println("unknown action")
             }

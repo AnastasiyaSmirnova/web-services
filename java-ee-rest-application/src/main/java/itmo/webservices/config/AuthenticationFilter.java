@@ -14,6 +14,8 @@ import javax.ws.rs.ext.Provider;
 import java.io.IOException;
 import java.security.Principal;
 
+// https://stackoverflow.com/questions/26777083/how-to-implement-rest-token-based-authentication-with-jax-rs-and-jersey
+
 @Secured
 @Provider
 @Priority(Priorities.AUTHENTICATION)
