@@ -41,7 +41,7 @@ public class AuthenticationFilter implements ContainerRequestFilter {
 
             @Override
             public Principal getUserPrincipal() {
-                return () -> authHeader;
+                return () -> token;
             }
 
             @Override

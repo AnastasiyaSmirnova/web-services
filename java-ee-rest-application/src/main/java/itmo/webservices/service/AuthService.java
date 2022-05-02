@@ -1,6 +1,7 @@
 package itmo.webservices.service;
 
 
+import itmo.webservices.annotation.Secured;
 import itmo.webservices.model.Credentials;
 import itmo.webservices.model.UserAccount;
 
@@ -28,6 +29,8 @@ public class AuthService {
         return Response.ok(newUser.getToken()).build();
     }
 
+
+    @Secured
     @POST
     @Path("logout")
     public void logout(@Context SecurityContext context) {

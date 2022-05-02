@@ -22,10 +22,13 @@ class JavaEERestClient : BookClient {
 
     override fun getBooks() {
         val request = request(url)
-        val books = client.send(request, HttpResponse.BodyHandlers.ofString())
-            .body()
-            .value<Collection<Book>>()
-        println(books.joinToString("\n"))
+        val response = client.send(request, HttpResponse.BodyHandlers.ofString())
+        if (response.statusCode().successStatus()) {
+            val books = response
+                .body()
+                .value<Collection<Book>>()
+            println(books.joinToString("\n"))
+        } else println("error - ${response.body()}")
     }
 
     override fun getBooksByTitle(title: String) {
@@ -171,9 +174,7 @@ class JavaEERestClient : BookClient {
 
         val response = client.send(request, HttpResponse.BodyHandlers.ofString())
         if (response.statusCode().successStatus()) {
-            val token = response
-                .body()
-                .value<String>()
+            val token = response.body()
             println("user login with token $token")
             this.token = token
         } else println("something goes wrong: ${response.body()}")
@@ -206,6 +207,7 @@ class JavaEERestClient : BookClient {
         .uri(URI.create(uri))
         .header("Content-Type", "application/json")
         .header("Accept", "application/json")
+        .header("Authorization", "$AUTHENTICATION_SCHEME: $token")
         .version(HttpClient.Version.HTTP_1_1)
         .build()
 }
