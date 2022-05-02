@@ -1,5 +1,6 @@
 package itmo.webservices.service;
 
+import itmo.webservices.annotation.Secured;
 import itmo.webservices.dao.BookDao;
 import itmo.webservices.exception.InvalidBookParamException;
 import itmo.webservices.model.*;
@@ -22,11 +23,13 @@ public class BookService {
     @Resource(lookup = "jdbc/ifmo-ws")
     private DataSource dataSource;
 
+    @Secured
     @GET()
     public List<Book> getBooks() {
         return new BookDao(getConnection()).getBooks();
     }
 
+    @Secured
     @POST
     public long addBook(AddBookRequest newBook) throws InvalidBookParamException {
         System.out.println("add book " + newBook);
@@ -41,6 +44,7 @@ public class BookService {
                 );
     }
 
+    @Secured
     @PUT
     public QueryStatus updateBook(UpdateBookRequest book) throws InvalidBookParamException {
         System.out.println("update book " + book);
@@ -56,6 +60,7 @@ public class BookService {
         );
     }
 
+    @Secured
     @DELETE
     @Path("{uid}")
     public QueryStatus deleteBook(@PathParam("uid") long uid) throws InvalidBookParamException {
