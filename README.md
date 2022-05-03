@@ -202,6 +202,7 @@ async.xml*](https://github.com/AnastasiyaSmirnova/web-services/blob/9b651b94ff20
 
 ##### Дополнительное задание: аутентификация.
 
+_*server*_
 1. Добавлен endpoint login,
    logout: [AuthService](https://github.com/AnastasiyaSmirnova/web-services/blob/laboratory-work-6-auth/java-ee-rest-application/src/main/java/itmo/webservices/service/AuthService.java)
 2. Добавлен
@@ -210,3 +211,7 @@ async.xml*](https://github.com/AnastasiyaSmirnova/web-services/blob/9b651b94ff20
 3. Создана аннотация [Secured](https://github.com/AnastasiyaSmirnova/web-services/blob/laboratory-work-6-auth/java-ee-rest-application/src/main/java/itmo/webservices/annotation/Secured.java)
 4. Методы, которые должны быть закрыты аутентификацией помечены аннотацией
    @Secured [BookService](https://github.com/AnastasiyaSmirnova/web-services/blob/d76cf6fcb9e0f9f2fd45d3c67ec5accbaca8df1c/java-ee-rest-application/src/main/java/itmo/webservices/service/BookService.java#L32)
+
+_*client*_
+1. Добавлены методы [login](https://github.com/AnastasiyaSmirnova/web-services/blob/04c174ba0be5b502a82dc3cfa1abe18e1dc69135/rest-client/src/main/kotlin/itmo/web_services/impl/JavaEERestClient.kt#L163), [logout](https://github.com/AnastasiyaSmirnova/web-services/blob/04c174ba0be5b502a82dc3cfa1abe18e1dc69135/rest-client/src/main/kotlin/itmo/web_services/impl/JavaEERestClient.kt#L183)
+2. Добавлен заголовок [*Authorization = AUTHENTICATION_SCHEME: token*](https://github.com/AnastasiyaSmirnova/web-services/blob/04c174ba0be5b502a82dc3cfa1abe18e1dc69135/rest-client/src/main/kotlin/itmo/web_services/impl/JavaEERestClient.kt#L210)
