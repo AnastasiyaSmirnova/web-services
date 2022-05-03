@@ -1,6 +1,7 @@
 package itmo.webservices.model;
 
-import java.util.Base64;
+import java.nio.charset.StandardCharsets;
+import java.util.Random;
 
 public class Credentials {
     private String username;
@@ -20,7 +21,16 @@ public class Credentials {
 
 
     public String getToken() {
-        Base64.Encoder encoder = Base64.getEncoder();
-        return encoder.encodeToString((username + password).getBytes());
+        int leftLimit = 97; // letter 'a'
+        int rightLimit = 122; // letter 'z'
+        int targetStringLength = 16;
+        Random random = new Random();
+        StringBuilder buffer = new StringBuilder(targetStringLength);
+        for (int i = 0; i < targetStringLength; i++) {
+            int randomLimitedInt = leftLimit + (int)
+                    (random.nextFloat() * (rightLimit - leftLimit + 1));
+            buffer.append((char) randomLimitedInt);
+        }
+        return buffer.toString();
     }
 }

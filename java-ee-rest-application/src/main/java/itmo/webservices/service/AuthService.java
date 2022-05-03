@@ -23,12 +23,12 @@ public class AuthService {
     public Response login(Credentials creds) {
         // imagine that username & password is correct
         UserAccount newUser = new UserAccount(creds.getUsername(), creds.getToken());
-        usersService.addUser(newUser);
+        // "abstract" way to generate & store token
+        String token = usersService.addUser(newUser);
         System.out.println("login user: " + newUser.getUsername());
 
-        return Response.ok(newUser.getToken()).build();
+        return Response.ok(token).build();
     }
-
 
     @Secured
     @POST
@@ -36,6 +36,6 @@ public class AuthService {
     public void logout(@Context SecurityContext context) {
         String name = context.getUserPrincipal().getName();
         System.out.println("login user: " + name);
-//        usersService.deleteUser();
+        usersService.deleteUser(name);
     }
 }

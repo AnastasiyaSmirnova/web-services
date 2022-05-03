@@ -19,8 +19,10 @@ public class UsersService {
         return service;
     }
 
-    public void addUser(UserAccount user) {
-        activeUsers.add(user.getToken());
+    public String addUser(UserAccount user) {
+        String token = user.getToken();
+        activeUsers.add(token);
+        return token;
     }
 
     public void deleteUser(String token) {

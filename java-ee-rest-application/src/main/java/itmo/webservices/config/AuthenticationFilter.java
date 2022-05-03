@@ -64,6 +64,5 @@ public class AuthenticationFilter implements ContainerRequestFilter {
 
     private void unauthorized(ContainerRequestContext requestContext) {
         requestContext.abortWith(Response.status(Response.Status.UNAUTHORIZED).build());
-
     }
 }
