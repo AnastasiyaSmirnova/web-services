@@ -169,7 +169,7 @@ async.xml*](https://github.com/AnastasiyaSmirnova/web-services/blob/9b651b94ff20
     * [*server*](https://github.com/AnastasiyaSmirnova/web-services/tree/laboratory-work-4/java-ee-rest-application)
     * [*
       client*](https://github.com/AnastasiyaSmirnova/web-services/blob/laboratory-work-4/rest-client/src/main/kotlin/itmo/web_services/impl/JavaEERestClient.kt)
-    
+
 ---
 ---
 
@@ -192,11 +192,21 @@ async.xml*](https://github.com/AnastasiyaSmirnova/web-services/blob/9b651b94ff20
 
 *Задание*
 
-Необходимо выполнить задание из третьей работы, но с использованием
-REST-сервиса. Таблицу базы данных, а также код для работы с ней можно оставить
-без изменений.
+Необходимо выполнить задание из третьей работы, но с использованием REST-сервиса. Таблицу базы данных, а также код для
+работы с ней можно оставить без изменений.
 
 [*Исходный код*](https://github.com/AnastasiyaSmirnova/web-services/tree/laboratory-work-6)
 
 - [Класс ошибки](https://github.com/AnastasiyaSmirnova/web-services/blob/laboratory-work-6/java-ee-rest-application/src/main/java/itmo/webservices/exception/InvalidBookParamException.java)
 - [Пример обработки ошибки на клиенте](https://github.com/AnastasiyaSmirnova/web-services/blob/a96c1486777ae6d53d8bcd56358869023548d49f/rest-client/src/main/kotlin/itmo/web_services/impl/JavaEERestClient.kt#L109)
+
+##### Дополнительное задание: аутентификация.
+
+1. Добавлен endpoint login,
+   logout: [AuthService](https://github.com/AnastasiyaSmirnova/web-services/blob/laboratory-work-6-auth/java-ee-rest-application/src/main/java/itmo/webservices/service/AuthService.java)
+2. Добавлен
+   фильтр [AuthenticationFilter](https://github.com/AnastasiyaSmirnova/web-services/blob/laboratory-work-6-auth/java-ee-rest-application/src/main/java/itmo/webservices/config/AuthenticationFilter.java)
+   , который осуществляет проверку токена (крайне общая схема) и прерывает обработку запроса, если такой токен не найден [(*пример*)](https://github.com/AnastasiyaSmirnova/web-services/blob/d76cf6fcb9e0f9f2fd45d3c67ec5accbaca8df1c/java-ee-rest-application/src/main/java/itmo/webservices/config/AuthenticationFilter.java#L66)
+3. Создана аннотация [Secured](https://github.com/AnastasiyaSmirnova/web-services/blob/laboratory-work-6-auth/java-ee-rest-application/src/main/java/itmo/webservices/annotation/Secured.java)
+4. Методы, которые должны быть закрыты аутентификацией помечены аннотацией
+   @Secured [BookService](https://github.com/AnastasiyaSmirnova/web-services/blob/d76cf6fcb9e0f9f2fd45d3c67ec5accbaca8df1c/java-ee-rest-application/src/main/java/itmo/webservices/service/BookService.java#L32)
