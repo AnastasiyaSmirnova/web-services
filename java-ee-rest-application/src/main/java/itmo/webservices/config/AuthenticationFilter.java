@@ -11,10 +11,7 @@ import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 import javax.ws.rs.ext.Provider;
-import java.io.IOException;
 import java.security.Principal;
-
-// https://stackoverflow.com/questions/26777083/how-to-implement-rest-token-based-authentication-with-jax-rs-and-jersey
 
 @Secured
 @Provider
@@ -38,7 +35,7 @@ public class AuthenticationFilter implements ContainerRequestFilter {
 
         final SecurityContext currentSecurityContext = requestContext.getSecurityContext();
         requestContext.setSecurityContext(new SecurityContext() {
-
+            // abstract example
             @Override
             public Principal getUserPrincipal() {
                 return () -> token;

@@ -1,6 +1,5 @@
 package itmo.webservices.model;
 
-import java.nio.charset.StandardCharsets;
 import java.util.Random;
 
 public class Credentials {

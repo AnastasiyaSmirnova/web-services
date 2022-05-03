@@ -23,7 +23,7 @@ public class AuthService {
     public Response login(Credentials creds) {
         // imagine that username & password is correct
         UserAccount newUser = new UserAccount(creds.getUsername(), creds.getToken());
-        // "abstract" way to generate & store token
+        // abstract way to generate & store token
         String token = usersService.addUser(newUser);
         System.out.println("login user: " + newUser.getUsername());
 
