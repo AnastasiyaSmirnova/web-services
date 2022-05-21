@@ -167,8 +167,7 @@ async.xml*](https://github.com/AnastasiyaSmirnova/web-services/blob/9b651b94ff20
       client*](https://github.com/AnastasiyaSmirnova/web-services/blob/laboratory-work-4/rest-client/src/main/kotlin/itmo/web_services/impl/JavaEERestClient.kt)
 * java EE REST application
     * [*server*](https://github.com/AnastasiyaSmirnova/web-services/tree/laboratory-work-4/java-ee-rest-application)
-    * [*
-      client*](https://github.com/AnastasiyaSmirnova/web-services/blob/laboratory-work-4/rest-client/src/main/kotlin/itmo/web_services/impl/JavaEERestClient.kt)
+    * [*client*](https://github.com/AnastasiyaSmirnova/web-services/blob/laboratory-work-4/rest-client/src/main/kotlin/itmo/web_services/impl/JavaEERestClient.kt)
 
 ---
 ---
@@ -215,3 +214,22 @@ _*server*_
 _*client*_
 1. Добавлены методы [login](https://github.com/AnastasiyaSmirnova/web-services/blob/04c174ba0be5b502a82dc3cfa1abe18e1dc69135/rest-client/src/main/kotlin/itmo/web_services/impl/JavaEERestClient.kt#L163), [logout](https://github.com/AnastasiyaSmirnova/web-services/blob/04c174ba0be5b502a82dc3cfa1abe18e1dc69135/rest-client/src/main/kotlin/itmo/web_services/impl/JavaEERestClient.kt#L183)
 2. Добавлен заголовок [*Authorization = AUTHENTICATION_SCHEME: token*](https://github.com/AnastasiyaSmirnova/web-services/blob/04c174ba0be5b502a82dc3cfa1abe18e1dc69135/rest-client/src/main/kotlin/itmo/web_services/impl/JavaEERestClient.kt#L210)
+
+
+---
+---
+
+###Лабораторная работа 7 
+
+*Задание*
+
+Требуется разработать приложение, осуществляющее регистрацию сервиса
+в реестре jUDDI, а также поиск сервиса в реестре и обращение к нему.
+Рекомендуется реализовать консольное приложение, которое обрабатывает две
+команды. Итог работы первой команды – регистрация сервиса в реестре; вторая
+команда должна осуществлять поиск сервиса, а также обращение к нему.
+
+[*Исходный код:*](https://github.com/AnastasiyaSmirnova/web-services/tree/laboratory-work-7/JUDDIService)
+
+- [*Registration*](https://github.com/AnastasiyaSmirnova/web-services/blob/laboratory-work-7/JUDDIService/src/main/java/RegistrationService.java)
+- [*Search*](https://github.com/AnastasiyaSmirnova/web-services/blob/laboratory-work-7/JUDDIService/src/main/java/SearchService.java)
