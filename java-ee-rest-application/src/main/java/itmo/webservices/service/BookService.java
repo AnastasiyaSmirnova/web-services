@@ -13,6 +13,8 @@ import javax.xml.bind.annotation.XmlElement;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 @RequestScoped
 @Path("/books")
@@ -25,6 +27,24 @@ public class BookService {
     @GET()
     public List<Book> getBooks() {
         return new BookDao(getConnection()).getBooks();
+    }
+
+    @GET
+    @Path("search")
+    public List<Book> searchByFilter(@QueryParam("title") String title,
+                                     @QueryParam("author") String author,
+                                     @QueryParam("publishingHouse") String pubHouse,
+                                     @QueryParam("minPages") Integer min,
+                                     @QueryParam("maxPages") Integer max
+    ) {
+        return new BookDao(getConnection()).getBooks().stream().filter(book ->
+                (title == null || Objects.equals(book.getTitle(), title)) &&
+                        (author == null || Objects.equals(book.getAuthor(), author)) &&
+                        (pubHouse == null || Objects.equals(book.getPublishingHouse(), pubHouse)) &&
+                        (min == null || book.getPages() >= min) &&
+                        (max == null || book.getPages() <= max)
+        ).collect(Collectors.toList());
+
     }
 
     @POST
