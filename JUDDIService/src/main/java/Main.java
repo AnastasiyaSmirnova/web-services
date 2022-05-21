@@ -23,10 +23,10 @@ public class Main {
                     System.out.println("Enter service name: ");
                     String serviceName = in.nextLine();
 
-
                     System.out.println("Business " + businessName + ", service " + serviceName + " will be created");
-//                    RegistrationService registrationService = new RegistrationService();
-//                    registrationService.publish(businessName, serviceName, DEFAULT_SERVICE_LOCATION);
+
+                    RegistrationService registrationService = new RegistrationService();
+                    registrationService.publish(businessName, serviceName, DEFAULT_SERVICE_LOCATION);
                     System.out.println("------------------------------------------------------------------" +
                             "\nEnter next:");
                     break;
