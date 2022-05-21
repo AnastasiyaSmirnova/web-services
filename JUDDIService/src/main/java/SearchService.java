@@ -6,7 +6,6 @@ import org.uddi.api_v3.*;
 import org.uddi.v3_service.UDDIInquiryPortType;
 import org.uddi.v3_service.UDDISecurityPortType;
 
-import java.rmi.RemoteException;
 import java.util.List;
 
 public class SearchService {
@@ -34,19 +33,11 @@ public class SearchService {
     }
 
     public void findServiceByName(String serviceName) {
-        String authToken = GetAuthKey("uddi", "uddi");
-        FindService findService = new FindService();
         try {
-            findService.setAuthInfo(authToken);
-            FindQualifiers qualifiers = new FindQualifiers();
-            qualifiers.getFindQualifier().add(UDDIConstants.APPROXIMATE_MATCH);
-            findService.setFindQualifiers(qualifiers);
-            Name searchName = new Name();
-            searchName.setValue(serviceName);
-            findService.getName().add(searchName);
-            ServiceList list = inquiry.findService(findService);
-            PrintServiceInfo(list.getServiceInfos());
-        } catch (RemoteException e) {
+            String authToken = GetAuthKey("uddi", "uddi");
+            ServiceList services = getServiceList(authToken, serviceName);
+            PrintServiceInfo(services.getServiceInfos());
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -80,6 +71,18 @@ public class SearchService {
         fb.getName().add(searchName);
 
         return inquiry.findBusiness(fb);
+    }
+
+    private ServiceList getServiceList(String token, String serviceName) throws Exception {
+        FindService findService = new FindService();
+        findService.setAuthInfo(token);
+        FindQualifiers qualifiers = new FindQualifiers();
+        qualifiers.getFindQualifier().add(UDDIConstants.APPROXIMATE_MATCH);
+        findService.setFindQualifiers(qualifiers);
+        Name searchName = new Name();
+        searchName.setValue(serviceName);
+        findService.getName().add(searchName);
+        return inquiry.findService(findService);
     }
 
     /**
@@ -166,8 +169,7 @@ public class SearchService {
      * data
      * format to something that is more useful.
      */
-    private void PrintBindingTemplates(BindingTemplates
-                                               bindingTemplates) {
+    private void PrintBindingTemplates(BindingTemplates bindingTemplates) {
         if (bindingTemplates == null) {
             return;
         }
